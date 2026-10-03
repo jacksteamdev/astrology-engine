@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+if ! command -v python3 >/dev/null 2>&1; then
+    echo 'Commit check requires Python 3. Install Python 3 and retry.' >&2
+    exit 1
+fi
+cd "$(git rev-parse --show-toplevel)"
+exec python3 tools/verification/check_prohibited_usage.py --index

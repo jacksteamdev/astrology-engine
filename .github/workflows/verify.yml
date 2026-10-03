@@ -1,0 +1,61 @@
+name: Verify
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  usage-policy:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python3 tools/verification/check_prohibited_usage.py --tree HEAD
+      - run: python3 tools/verification/test_prohibited_usage.py
+  configurable-chart:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.3.14'
+      - run: rustup toolchain install 1.96.0 --profile minimal --component rustfmt --component clippy --target wasm32-unknown-unknown
+      - run: cargo install wasm-bindgen-cli --version 0.2.122 --locked
+      - run: cargo fmt --manifest-path examples/configurable-chart/wasm/Cargo.toml -- --check
+      - run: cargo clippy --locked --manifest-path examples/configurable-chart/wasm/Cargo.toml --target wasm32-unknown-unknown -- -D warnings
+      - run: bun install --frozen-lockfile
+        working-directory: examples/configurable-chart
+      - run: bun run build:wasm && bun run check && bun run build
+        working-directory: examples/configurable-chart
+  wasm-and-host:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.3.14'
+      - run: rustup toolchain install 1.96.0 --profile minimal --component rustfmt --component clippy --target wasm32-unknown-unknown
+      - run: cargo fmt --all -- --check
+      - run: cargo test --locked --workspace
+      - run: cargo fmt --manifest-path examples/cloudflare-worker/Cargo.toml -- --check
+      - run: cargo clippy --locked --workspace --all-targets -- -D warnings
+      - run: cargo clippy --locked --manifest-path examples/cloudflare-worker/Cargo.toml --target wasm32-unknown-unknown --features verification -- -D warnings
+      - run: cargo install worker-build --version 0.8.3 --locked
+      - run: bun install --frozen-lockfile
+        working-directory: examples/cloudflare-worker
+      - run: bun run build:verification
+        working-directory: examples/cloudflare-worker
+      - run: node examples/cloudflare-worker/verify.mjs
+      - run: python tools/verification/test_compare.py
+      - run: python -m pip install --require-hashes -r tools/jpl/requirements.lock
+      - run: python tools/verification/test_acquisition.py
+      - run: python tools/verification/test_generation.py
+      - run: python tools/verification/check_boundaries.py
+      - run: cargo package --locked --allow-dirty

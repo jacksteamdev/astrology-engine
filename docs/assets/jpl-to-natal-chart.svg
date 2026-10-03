@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="1136" viewBox="0 0 1040 1136" font-family="DejaVu Sans, sans-serif" fill="#172b40" role="img" aria-labelledby="title description">
+  <title id="title">From JPL data to a natal chart</title>
+  <desc id="description">Host preparation acquires JPL DE440s and Horizons vectors, prepares kernels and chart-coordinate samples, and fits Chebyshev coefficients into cheb.bin. At runtime the Rust library evaluates that dataset at the birth instant, then uses birthplace and house system to assemble natal chart values.</desc>
+  <rect width="1040" height="1136" fill="#fff"/>
+  <text x="48" y="53" font-size="30" font-weight="700">From JPL data to a natal chart</text>
+  <text x="48" y="84" font-size="18">Prepare reusable data once. Evaluate it for each birth.</text>
+
+  <rect x="32" y="112" width="976" height="450" rx="18" fill="#f1f5fa"/>
+  <text x="56" y="145" font-size="16" font-weight="700" letter-spacing="1.5">HOST PREPARATION</text>
+
+  <rect x="96" y="167" width="848" height="90" rx="12" fill="#fff" stroke="#c6d3df" stroke-width="1.5"/>
+  <circle cx="132" cy="199" r="17" fill="#355f87"/>
+  <text x="132" y="205" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">1</text>
+  <text x="165" y="202" font-size="22" font-weight="650">Acquire JPL data</text>
+  <text x="165" y="232" font-size="18">DE440s kernel + Ceres and Chiron vectors from Horizons</text>
+  <rect x="518.75" y="257" width="2.5" height="15" fill="#526478"/>
+  <polygon points="514,271 520,280 526,271" fill="#526478"/>
+
+  <rect x="96" y="285" width="848" height="104" rx="12" fill="#fff" stroke="#c6d3df" stroke-width="1.5"/>
+  <circle cx="132" cy="317" r="17" fill="#355f87"/>
+  <text x="132" y="323" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">2</text>
+  <text x="165" y="320" font-size="22" font-weight="650">Prepare chart-coordinate samples</text>
+  <text x="165" y="349" font-size="18">Prepare SPK kernels; apply the builder's coordinate corrections.</text>
+  <text x="165" y="374" font-size="16" fill="#526478">Longitude, declination, and a separate lunar-node longitude series</text>
+  <rect x="518.75" y="389" width="2.5" height="15" fill="#526478"/>
+  <polygon points="514,403 520,412 526,403" fill="#526478"/>
+
+  <rect x="96" y="417" width="848" height="110" rx="12" fill="#fff" stroke="#c6d3df" stroke-width="1.5"/>
+  <circle cx="132" cy="449" r="17" fill="#355f87"/>
+  <text x="132" y="455" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">3</text>
+  <text x="165" y="452" font-size="22" font-weight="650">Fit Chebyshev coefficients</text>
+  <text x="165" y="481" font-size="18">Fit each coordinate over time segments and check residuals.</text>
+  <text x="165" y="508" font-size="16" fill="#526478">Write the coefficient binary, manifest, and residual report.</text>
+  <rect x="518.75" y="527" width="2.5" height="50" fill="#526478"/>
+  <polygon points="514,576 520,585 526,576" fill="#526478"/>
+
+  <rect x="250" y="591" width="540" height="86" rx="12" fill="#fff5dd" stroke="#cba652" stroke-width="1.5"/>
+  <text x="520" y="625" text-anchor="middle" font-size="22" font-weight="650">cheb.bin · HDCHEB01</text>
+  <text x="520" y="654" text-anchor="middle" font-size="18">Reusable coefficients, segment metadata, coverage</text>
+  <rect x="518.75" y="677" width="2.5" height="39" fill="#526478"/>
+  <polygon points="514,715 520,724 526,715" fill="#526478"/>
+  <text x="539" y="715" font-size="16" fill="#526478">Caller loads the prepared dataset</text>
+
+  <rect x="32" y="729" width="976" height="374" rx="18" fill="#edf6f3"/>
+  <text x="56" y="762" font-size="16" font-weight="700" letter-spacing="1.5">RUST RUNTIME</text>
+  <rect x="518.75" y="729" width="2.5" height="46" fill="#526478"/>
+  <polygon points="514,774 520,783 526,774" fill="#526478"/>
+
+  <rect x="96" y="789" width="848" height="108" rx="12" fill="#fff" stroke="#c6d3df" stroke-width="1.5"/>
+  <circle cx="132" cy="821" r="17" fill="#346957"/>
+  <text x="132" y="827" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">4</text>
+  <text x="165" y="824" font-size="22" font-weight="650">Evaluate at the birth instant</text>
+  <text x="165" y="853" font-size="18">Parse and reuse the ephemeris; evaluate the relevant segments.</text>
+  <text x="165" y="879" font-size="16" fill="#526478">Body longitudes, declinations, speeds, and derived entries</text>
+  <rect x="518.75" y="897" width="2.5" height="15" fill="#526478"/>
+  <polygon points="514,911 520,920 526,911" fill="#526478"/>
+
+  <rect x="96" y="925" width="848" height="140" rx="12" fill="#fff" stroke="#c6d3df" stroke-width="1.5"/>
+  <circle cx="132" cy="957" r="17" fill="#346957"/>
+  <text x="132" y="963" text-anchor="middle" font-size="19" font-weight="700" fill="#fff">5</text>
+  <text x="165" y="960" font-size="22" font-weight="650">Assemble the natal chart</text>
+  <text x="165" y="991" font-size="18">Birth instant + birthplace + house system → angles and houses</text>
+  <text x="165" y="1020" font-size="18">Combine with body values → ChartValues</text>
+  <text x="165" y="1046" font-size="16" fill="#526478">19 body/angle entries and optional house cusps</text>
+</svg>

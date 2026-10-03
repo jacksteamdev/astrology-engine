@@ -1,0 +1,19 @@
+[package]
+name = "configurable-chart-example"
+version = "0.1.0"
+edition = "2021"
+publish = false
+[workspace]
+[lib]
+crate-type = ["cdylib", "rlib"]
+[dependencies]
+astrology-engine = { path = "../../.." }
+wasm-bindgen = "=0.2.122"
+serde = { version = "=1.0.228", features = ["derive"] }
+serde_json = { version = "=1.0.150", features = ["float_roundtrip"] }
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

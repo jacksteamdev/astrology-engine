@@ -1,0 +1,17 @@
+/.vscode/
+/target/
+**/target/
+**/build/
+**/.wrangler/
+**/node_modules/
+**/.venv/
+**/__pycache__/
+*.bsp
+*.bin
+.env*
+.dev.vars*
+/data/cache/
+/data/generated/
+/.worktrees/
+
+.DS_Store

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="1090" viewBox="0 0 1360 1090" font-family="DejaVu Sans, sans-serif" fill="#172b40" role="img" aria-labelledby="title description">
+  <title id="title">Worker demo architecture</title>
+  <desc id="description">A public client sends chart or solar crossing requests to a Rust WebAssembly Worker. The adapter validates the request. On a cold load it reads cheb.bin through the EPHEMERIS R2 binding, verifies SHA-256, parses the ephemeris, and caches it within that isolate. Warm requests reuse the parsed data. The Rust library calculates a chart or solar crossing and the adapter returns JSON. Separate local tooling generates the dataset from JPL inputs and uploads it to a private R2 bucket. Health checks do not load the dataset.</desc>
+  <rect width="1360" height="1090" fill="#fff"/>
+  <text x="48" y="58" font-size="32" font-weight="700">Worker demo architecture</text>
+  <text x="48" y="94" font-size="20">Prepare the dataset once. Load it per isolate. Calculate per request.</text>
+
+  <rect x="365" y="156" width="585" height="849" rx="18" fill="#edf6f3"/>
+  <text x="397" y="193" font-size="17" font-weight="700" letter-spacing="1.5">CLOUDFLARE WORKER</text>
+  <text x="397" y="222" font-size="18" fill="#526478">Rust compiled to WebAssembly · one isolate</text>
+
+  <rect x="40" y="242" width="270" height="160" rx="12" fill="#f1f5fa" stroke="#c6d3df" stroke-width="1.5"/>
+  <text x="64" y="280" font-size="24" font-weight="700">Client</text>
+  <text x="64" y="322" font-size="19">curl or application</text>
+  <text x="64" y="353" font-size="18">Public workers.dev URL</text>
+  <text x="64" y="380" font-size="17" fill="#526478">No authentication</text>
+  <rect x="310" y="300.75" width="80" height="2.5" fill="#526478"/><polygon points="389,296 403,302 389,308" fill="#526478"/>
+  <text x="331" y="285" font-size="15" fill="#526478">HTTPS</text>
+
+  <rect x="405" y="262" width="505" height="154" rx="12" fill="#fff" stroke="#c6d3df" stroke-width="1.5"/>
+  <text x="431" y="299" font-size="24" font-weight="700">HTTP adapter</text>
+  <text x="431" y="334" font-size="19">POST /charts</text>
+  <text x="431" y="363" font-size="19">POST /charts/find-moment</text>
+  <text x="431" y="393" font-size="17" fill="#526478">Validate input and configured coverage years</text>
+  <rect x="655.75" y="416" width="2.5" height="71" fill="#526478"/><polygon points="651,486 657,500 663,486" fill="#526478"/>
+  <text x="680" y="460" font-size="17" fill="#526478">Valid request</text>
+
+  <rect x="405" y="502" width="505" height="200" rx="12" fill="#fff" stroke="#c6d3df" stroke-width="1.5"/>
+  <text x="431" y="543" font-size="24" font-weight="700">Dataset loader + isolate cache</text>
+  <text x="431" y="582" font-size="18">Cold: fetch bytes → check SHA-256 → parse</text>
+  <text x="431" y="617" font-size="18">Warm: reuse the parsed ephemeris</text>
+  <text x="431" y="653" font-size="17" fill="#526478">Cache identity: object key + expected hash</text>
+  <text x="431" y="680" font-size="17" fill="#526478">Each isolate has its own in-memory cache</text>
+
+  <rect x="1000" y="156" width="320" height="269" rx="18" fill="#f1f5fa"/>
+  <text x="1024" y="193" font-size="16" font-weight="700" letter-spacing="1.1">LOCAL PREPARATION</text>
+  <text x="1024" y="244" font-size="23" font-weight="700">Official JPL inputs</text>
+  <text x="1024" y="276" font-size="17">DE440s + Horizons</text>
+  <rect x="1158.75" y="291" width="2.5" height="17" fill="#526478"/><polygon points="1154,307 1160,321 1166,307" fill="#526478"/>
+  <text x="1024" y="356" font-size="21" font-weight="700">Generation tooling</text>
+  <text x="1024" y="388" font-size="17">cheb.bin + manifest + provenance</text>
+  <rect x="1158.75" y="425" width="2.5" height="97" fill="#526478"/><polygon points="1154,521 1160,535 1166,521" fill="#526478"/>
+  <text x="1180" y="470" font-size="16" fill="#526478">Upload</text>
+  <text x="1180" y="496" font-size="16" fill="#526478">cheb.bin</text>
+
+  <rect x="1000" y="537" width="320" height="166" rx="12" fill="#fff5dd" stroke="#cba652" stroke-width="1.5"/>
+  <text x="1024" y="576" font-size="24" font-weight="700">Private R2 bucket</text>
+  <text x="1024" y="612" font-size="20">cheb/demo/cheb.bin</text>
+  <text x="1024" y="644" font-size="17">EPHEMERIS binding</text>
+  <text x="1024" y="678" font-size="17" fill="#526478">No public dataset URL</text>
+  <rect x="925" y="600.75" width="75" height="2.5" fill="#526478"/><polygon points="926,596 912,602 926,608" fill="#526478"/>
+  <text x="929" y="581" font-size="16" fill="#526478">Bytes</text>
+  <text x="930" y="629" font-size="15" fill="#526478">Cold load</text>
+
+  <rect x="655.75" y="702" width="2.5" height="65" fill="#526478"/><polygon points="651,766 657,780 663,766" fill="#526478"/>
+  <text x="680" y="747" font-size="17" fill="#526478">Parsed ephemeris</text>
+  <rect x="405" y="782" width="505" height="151" rx="12" fill="#fff" stroke="#c6d3df" stroke-width="1.5"/>
+  <text x="431" y="820" font-size="24" font-weight="700">astrology-engine library</text>
+  <text x="431" y="855" font-size="19">calculate_chart or find_sun_crossing</text>
+  <text x="431" y="888" font-size="18">Check exact coverage; calculate from coefficients</text>
+  <text x="431" y="914" font-size="17" fill="#526478">No storage or network access</text>
+  <rect x="335" y="861.75" width="70" height="2.5" fill="#526478"/><rect x="333.75" y="433.75" width="2.5" height="430.5" fill="#526478"/><rect x="173.75" y="433.75" width="162.5" height="2.5" fill="#526478"/><rect x="173.75" y="417" width="2.5" height="18" fill="#526478"/><polygon points="169,418 175,404 181,418" fill="#526478"/>
+  <text x="64" y="472" font-size="18" fill="#526478">JSON response</text>
+  <text x="64" y="500" font-size="17" fill="#526478">Formatted by the adapter</text>
+  <text x="405" y="975" font-size="18" fill="#346957">GET /health returns ok without loading the dataset.</text>
+
+  <text x="48" y="1053" font-size="19" fill="#526478">The Worker consumes the generated dataset. JPL is never called in the request path.</text>
+</svg>

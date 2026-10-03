@@ -1,0 +1,30 @@
+{
+  "origin": "official JPL Horizons acquisition",
+  "request": {
+    "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+    "params": {
+      "format": "text",
+      "COMMAND": "2000001",
+      "OBJ_DATA": "NO",
+      "MAKE_EPHEM": "YES",
+      "EPHEM_TYPE": "VECTORS",
+      "CENTER": "500@10",
+      "REF_PLANE": "FRAME",
+      "REF_SYSTEM": "ICRF",
+      "VEC_TABLE": "2",
+      "VEC_LABELS": "NO",
+      "VEC_CORR": "NONE",
+      "CSV_FORMAT": "YES",
+      "OUT_UNITS": "KM-S",
+      "TIME_TYPE": "TDB",
+      "START_TIME": "JD2396393.500000000",
+      "STOP_TIME": "JD2506697.500000000",
+      "STEP_SIZE": "55152"
+    }
+  },
+  "retrieved_at": "2026-09-26T22:47:10.744788+00:00",
+  "response_sha256": "cd79e6030f996392ddb0d94ba555032b9b9c95b3b6f8639d45e4bda44751ed35",
+  "selection": "first 65 vector rows",
+  "source_fixture_imports": false,
+  "subset_sha256": "e01672e98cff878df15f55d0b40ac3889a18fefa48fc05650e452d151bf4cf11"
+}

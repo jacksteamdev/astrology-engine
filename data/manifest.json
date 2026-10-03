@@ -1,0 +1,287 @@
+{
+  "format": "HDCHEB01",
+  "bytes": 12712840,
+  "sha256": "37773a57791bbadcb04ffe61348a8293f15e12831a7f69b7302170edbb2fe36e",
+  "domainEt": {
+    "hi": 4732603200.0,
+    "lo": -4733553600.0
+  },
+  "engineFingerprint": "4b44fa59",
+  "series": [
+    {
+      "body": "Sun",
+      "degree": 10,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg10\u21920.0206\u2033",
+      "maxBoundaryJumpArcsec": 0.02476244658282667,
+      "maxResidualArcsec": 0.020592316127476806,
+      "nSegments": 3424,
+      "quantity": "Longitude",
+      "segDays": 32.0
+    },
+    {
+      "body": "Sun",
+      "degree": 8,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg8\u21920.0380\u2033",
+      "maxBoundaryJumpArcsec": 0.051575506704326646,
+      "maxResidualArcsec": 0.03804248984948799,
+      "nSegments": 3424,
+      "quantity": "Declination",
+      "segDays": 32.0
+    },
+    {
+      "body": "Moon",
+      "degree": 10,
+      "gateArcsec": 0.1,
+      "ladder": "8d/deg10\u21920.0042\u2033",
+      "maxBoundaryJumpArcsec": 0.004037742428408819,
+      "maxResidualArcsec": 0.004181717986284639,
+      "nSegments": 13699,
+      "quantity": "Longitude",
+      "segDays": 8.0
+    },
+    {
+      "body": "Moon",
+      "degree": 12,
+      "gateArcsec": 0.1,
+      "ladder": "8d/deg10\u21920.1815\u2033 ; 8d/deg12\u21920.0184\u2033",
+      "maxBoundaryJumpArcsec": 0.015423905378497693,
+      "maxResidualArcsec": 0.018423708830539454,
+      "nSegments": 13699,
+      "quantity": "Declination",
+      "segDays": 8.0
+    },
+    {
+      "body": "Mercury",
+      "degree": 10,
+      "gateArcsec": 0.1,
+      "ladder": "8d/deg10\u21920.0000\u2033",
+      "maxBoundaryJumpArcsec": 5.2321820476208813e-05,
+      "maxResidualArcsec": 4.010053089587018e-05,
+      "nSegments": 13699,
+      "quantity": "Longitude",
+      "segDays": 8.0
+    },
+    {
+      "body": "Mercury",
+      "degree": 10,
+      "gateArcsec": 0.1,
+      "ladder": "8d/deg10\u21920.0000\u2033",
+      "maxBoundaryJumpArcsec": 2.7453764062101982e-05,
+      "maxResidualArcsec": 2.1317271148291184e-05,
+      "nSegments": 13699,
+      "quantity": "Declination",
+      "segDays": 8.0
+    },
+    {
+      "body": "Venus",
+      "degree": 10,
+      "gateArcsec": 0.1,
+      "ladder": "16d/deg10\u21920.0005\u2033",
+      "maxBoundaryJumpArcsec": 0.000438302117800049,
+      "maxResidualArcsec": 0.0005051555717727751,
+      "nSegments": 6849,
+      "quantity": "Longitude",
+      "segDays": 16.0
+    },
+    {
+      "body": "Venus",
+      "degree": 8,
+      "gateArcsec": 0.1,
+      "ladder": "16d/deg8\u21920.0020\u2033",
+      "maxBoundaryJumpArcsec": 0.0018759834573778278,
+      "maxResidualArcsec": 0.0019981301125682194,
+      "nSegments": 6849,
+      "quantity": "Declination",
+      "segDays": 16.0
+    },
+    {
+      "body": "Mars",
+      "degree": 10,
+      "gateArcsec": 0.1,
+      "ladder": "16d/deg10\u21920.0003\u2033",
+      "maxBoundaryJumpArcsec": 0.00022262240690906765,
+      "maxResidualArcsec": 0.00027290645903121913,
+      "nSegments": 6849,
+      "quantity": "Longitude",
+      "segDays": 16.0
+    },
+    {
+      "body": "Mars",
+      "degree": 8,
+      "gateArcsec": 0.1,
+      "ladder": "16d/deg8\u21920.0012\u2033",
+      "maxBoundaryJumpArcsec": 0.0010427066058582568,
+      "maxResidualArcsec": 0.001198787040834759,
+      "nSegments": 6849,
+      "quantity": "Declination",
+      "segDays": 16.0
+    },
+    {
+      "body": "Jupiter",
+      "degree": 10,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg10\u21920.0106\u2033",
+      "maxBoundaryJumpArcsec": 0.011906520057891612,
+      "maxResidualArcsec": 0.010642634447322052,
+      "nSegments": 3424,
+      "quantity": "Longitude",
+      "segDays": 32.0
+    },
+    {
+      "body": "Jupiter",
+      "degree": 8,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg8\u21920.0246\u2033",
+      "maxBoundaryJumpArcsec": 0.026360314497608783,
+      "maxResidualArcsec": 0.024584397978166805,
+      "nSegments": 3424,
+      "quantity": "Declination",
+      "segDays": 32.0
+    },
+    {
+      "body": "Saturn",
+      "degree": 10,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg10\u21920.0083\u2033",
+      "maxBoundaryJumpArcsec": 0.010273764252133333,
+      "maxResidualArcsec": 0.008314560227518086,
+      "nSegments": 3424,
+      "quantity": "Longitude",
+      "segDays": 32.0
+    },
+    {
+      "body": "Saturn",
+      "degree": 8,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg8\u21920.0201\u2033",
+      "maxBoundaryJumpArcsec": 0.02474461511852155,
+      "maxResidualArcsec": 0.020101176633602336,
+      "nSegments": 3424,
+      "quantity": "Declination",
+      "segDays": 32.0
+    },
+    {
+      "body": "Uranus",
+      "degree": 8,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg8\u21920.0456\u2033",
+      "maxBoundaryJumpArcsec": 0.05790341165266,
+      "maxResidualArcsec": 0.04557952356663009,
+      "nSegments": 3424,
+      "quantity": "Longitude",
+      "segDays": 32.0
+    },
+    {
+      "body": "Uranus",
+      "degree": 6,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg6\u21920.0720\u2033",
+      "maxBoundaryJumpArcsec": 0.0865746253055022,
+      "maxResidualArcsec": 0.07204267857474633,
+      "nSegments": 3424,
+      "quantity": "Declination",
+      "segDays": 32.0
+    },
+    {
+      "body": "Neptune",
+      "degree": 8,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg8\u21920.0440\u2033",
+      "maxBoundaryJumpArcsec": 0.05590643693267339,
+      "maxResidualArcsec": 0.04402834638312925,
+      "nSegments": 3424,
+      "quantity": "Longitude",
+      "segDays": 32.0
+    },
+    {
+      "body": "Neptune",
+      "degree": 6,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg6\u21920.0708\u2033",
+      "maxBoundaryJumpArcsec": 0.08391548174415675,
+      "maxResidualArcsec": 0.07075963840463828,
+      "nSegments": 3424,
+      "quantity": "Declination",
+      "segDays": 32.0
+    },
+    {
+      "body": "Pluto",
+      "degree": 8,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg8\u21920.0440\u2033",
+      "maxBoundaryJumpArcsec": 0.055433007560168335,
+      "maxResidualArcsec": 0.04398881944780442,
+      "nSegments": 3424,
+      "quantity": "Longitude",
+      "segDays": 32.0
+    },
+    {
+      "body": "Pluto",
+      "degree": 6,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg6\u21920.0715\u2033",
+      "maxBoundaryJumpArcsec": 0.08431639986525852,
+      "maxResidualArcsec": 0.07154349445430697,
+      "nSegments": 3424,
+      "quantity": "Declination",
+      "segDays": 32.0
+    },
+    {
+      "body": "Chiron",
+      "degree": 12,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg12\u21920.0011\u2033",
+      "maxBoundaryJumpArcsec": 0.0012431269965418323,
+      "maxResidualArcsec": 0.0011266337878623744,
+      "nSegments": 3424,
+      "quantity": "Longitude",
+      "segDays": 32.0
+    },
+    {
+      "body": "Chiron",
+      "degree": 10,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg10\u21920.0031\u2033",
+      "maxBoundaryJumpArcsec": 0.004006361522534974,
+      "maxResidualArcsec": 0.003142756556995252,
+      "nSegments": 3424,
+      "quantity": "Declination",
+      "segDays": 32.0
+    },
+    {
+      "body": "Ceres",
+      "degree": 12,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg12\u21920.0255\u2033",
+      "maxBoundaryJumpArcsec": 0.002888837047976267,
+      "maxResidualArcsec": 0.025500589390503592,
+      "nSegments": 3424,
+      "quantity": "Longitude",
+      "segDays": 32.0
+    },
+    {
+      "body": "Ceres",
+      "degree": 10,
+      "gateArcsec": 0.1,
+      "ladder": "32d/deg10\u21920.0099\u2033",
+      "maxBoundaryJumpArcsec": 0.006889293833012289,
+      "maxResidualArcsec": 0.009898562251464682,
+      "nSegments": 3424,
+      "quantity": "Declination",
+      "segDays": 32.0
+    },
+    {
+      "body": "NodeOmega",
+      "degree": 10,
+      "gateArcsec": 1.0,
+      "ladder": "8d/deg10\u21920.0003\u2033",
+      "maxBoundaryJumpArcsec": 0.00028874837880721316,
+      "maxResidualArcsec": 0.0002783493755487143,
+      "nSegments": 13699,
+      "quantity": "Longitude",
+      "segDays": 8.0
+    }
+  ]
+}

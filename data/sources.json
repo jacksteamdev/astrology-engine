@@ -1,0 +1,22 @@
+{
+  "inputs": [
+    {
+      "name": "DE440s",
+      "url": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/de440s.bsp",
+      "redistributed": false
+    },
+    {
+      "name": "Ceres and Chiron vectors",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "center": "500@10",
+        "frame": "ICRF",
+        "units": "KM-S",
+        "time": "TDB"
+      },
+      "redistributed": "65-row Ceres generation test only"
+    }
+  ],
+  "historical_production_inputs": "not completely identified",
+  "generation": "new acquired and SHA-recorded inputs; does not reproduce historical production coefficients"
+}

@@ -1,0 +1,52 @@
+{
+  "source_revision": "dd2e03d9faf256342c84380ccb6fac83c06771ac",
+  "source_lock_sha256": "57165cc1be6eca7e4f3639a4c2d42688a3e592bc003f022c8af6d77a6492b472",
+  "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)\nbinary: rustc\ncommit-hash: ac68faa20c58cbccd01ee7208bf3b6e93a7d7f96\ncommit-date: 2026-05-25\nhost: aarch64-apple-darwin\nrelease: 1.96.0\nLLVM version: 22.1.2",
+  "wrangler": "4.112.0",
+  "compatibility_date": "2024-11-01",
+  "compatibility_flags": [],
+  "profile": {
+    "opt-level": 3,
+    "lto": true,
+    "codegen-units": 1,
+    "panic": "abort",
+    "strip": true,
+    "wasm-opt": [
+      "-O3"
+    ]
+  },
+  "origin": "new synthetic inputs executed by original engine in local workerd",
+  "runtime": "wasm32-unknown-unknown",
+  "seed": 20260926,
+  "dataset_sha256": "37773a57791bbadcb04ffe61348a8293f15e12831a7f69b7302170edbb2fe36e",
+  "miniflare": "4.20260714.0",
+  "workerd": "1.20260714.1",
+  "files": {
+    "inputs.json": {
+      "sha256": "d74c200095bb370940ee849b7701b1e96085f8a20c0e980ceb844164a1bab4db",
+      "compressed_bytes": 33338,
+      "count": 3831
+    },
+    "results.jsonl": {
+      "sha256": "c5b2b4c97b90464c0c0d5c88b0762e6989b6184d2e9ccf38fcfcdbd523ad5a0c",
+      "compressed_bytes": 1377755,
+      "count": 3831
+    },
+    "events-inputs.json": {
+      "sha256": "556dd3d67da81412726b27863d7b257222b59017a8b62dbb1d6c62e187c8878a",
+      "compressed_bytes": 750,
+      "count": 58
+    },
+    "events-results.jsonl": {
+      "sha256": "05b59c36b8d3123adb3a474fc2843c90cd6695a642446574c0338efc4fbd359f",
+      "compressed_bytes": 44747,
+      "count": 58
+    },
+    "adapter.jsonl": {
+      "sha256": "dbf3a9bd2c54fb6c794356fb16683818611efd00469be744bf98ea98a93a7fa7",
+      "compressed_bytes": 2758,
+      "count": 40
+    }
+  },
+  "source_fixture_imports": false
+}

@@ -1,0 +1,17 @@
+{
+  "name": "astrology-worker-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "worker-build --release",
+    "build:verification": "worker-build --release -- --features verification",
+    "test": "node verify.mjs"
+  },
+  "devDependencies": {
+    "miniflare": "4.20260714.0",
+    "wrangler": "4.112.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
