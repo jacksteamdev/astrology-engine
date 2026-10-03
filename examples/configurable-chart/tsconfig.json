@@ -1,4 +1,4 @@
 {
-  "compilerOptions": { "target": "ES2022", "module": "ESNext", "moduleResolution": "Bundler", "strict": true, "noEmit": true, "types": ["bun"], "lib": ["ES2022", "DOM"], "skipLibCheck": true, "allowImportingTsExtensions": true },
+  "compilerOptions": { "target": "ES2022", "module": "ESNext", "moduleResolution": "Bundler", "strict": true, "noEmit": true, "types": ["bun", "vite/client"], "lib": ["ES2022", "DOM"], "skipLibCheck": true, "allowImportingTsExtensions": true },
   "include": ["*.ts", "engine/*.d.ts"]
 }
