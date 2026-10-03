@@ -1,0 +1,44 @@
+[
+  {
+    "name": "libm",
+    "version": "0.2.16",
+    "path": "LICENSE.txt",
+    "sha256": "3823dda7cf046602f4b4e77ec8e227863dc4736037cc85bb33d9f19febe16bb7"
+  },
+  {
+    "name": "sofars",
+    "version": "0.6.1",
+    "path": "LICENSE",
+    "sha256": "1d0ad407ca274f6deda2febd518dc1f899f70233bde03676e9fb6050d1d7bc0a"
+  },
+  {
+    "name": "chrono",
+    "version": "0.4.44",
+    "path": "LICENSE.txt",
+    "sha256": "946c9835d8034d24404f8cfec5f4654cee5dad17e944afc3d06d742cf2882831"
+  },
+  {
+    "name": "ryu",
+    "version": "1.0.23",
+    "path": "LICENSE-APACHE",
+    "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+  },
+  {
+    "name": "worker",
+    "version": "0.8.3",
+    "path": "LICENSE",
+    "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+  },
+  {
+    "name": "worker-sys",
+    "version": "0.8.3",
+    "path": "LICENSE",
+    "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+  },
+  {
+    "name": "worker-macros",
+    "version": "0.8.3",
+    "path": "LICENSE",
+    "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+  }
+]

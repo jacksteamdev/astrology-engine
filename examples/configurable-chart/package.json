@@ -6,8 +6,12 @@
     "build:wasm": "bun build-wasm.ts",
     "check": "tsc --noEmit",
     "dev": "vite --host 127.0.0.1",
-    "build": "vite build --outDir build",
+    "build": "bun ../../tools/notices/notices.ts copy browser public && vite build --outDir build",
     "verify": "bun verify.ts"
   },
-  "devDependencies": { "@types/bun": "1.3.14", "typescript": "5.9.3", "vite": "7.3.1" }
+  "devDependencies": {
+    "@types/bun": "1.3.14",
+    "typescript": "5.9.3",
+    "vite": "7.3.1"
+  }
 }

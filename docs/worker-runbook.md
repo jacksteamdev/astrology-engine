@@ -256,7 +256,7 @@ values and setting the coverage years from step 2:
   "compatibility_date": "2024-11-01",
   "workers_dev": true,
   "preview_urls": false,
-  "build": { "command": "worker-build --release" },
+  "build": { "command": "bun run build" },
   "vars": {
     "EPHEMERIS_KEY": "cheb/demo/cheb.bin",
     "EPHEMERIS_SHA256": "REPLACE_WITH_GENERATED_SHA256",
@@ -543,3 +543,13 @@ and [R2 delete commands](https://developers.cloudflare.com/workers/wrangler/comm
 You may remove `.wrangler/demo-state` and `.wrangler/demo-evidence` locally when
 finished. Keep the generated dataset, JPL cache, and provenance if you want to
 reuse them. Removing this demo does not cancel an account's R2 subscription.
+
+## Distribution notices
+
+Use `bun run build` or `bun run build:verification` rather than invoking
+`worker-build` directly when preparing distributable artifacts. Both wrappers
+include the project license and applicable notices in `build/` and
+`build/worker/`; the Wrangler build command uses the ordinary wrapper too. Keep
+these files with any shared artifact directory. The notices include exact MPL
+source links. See the [notice guide](../tools/notices/README.md) before updating
+dependencies or distributing modified dependency source.

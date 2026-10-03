@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "worker-build --release",
-    "build:verification": "worker-build --release -- --features verification",
+    "build": "bun build.ts",
+    "build:verification": "bun build.ts --verification",
     "test": "node verify.mjs"
   },
   "devDependencies": {

@@ -1,0 +1,4 @@
+# Preserve upstream license/notice formatting, including original whitespace.
+notices/*.txt -whitespace
+notices/RUST_LIBRARY_NOTICES.html -whitespace
+tools/notices/supplements/*.txt -whitespace

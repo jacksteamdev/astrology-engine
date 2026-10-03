@@ -1,0 +1,75 @@
+[
+  {
+    "name": "anise",
+    "version": "0.10.1",
+    "profiles": [
+      "builder"
+    ],
+    "source": "https://github.com/nyx-space/anise/tree/43780d81d9fe780182cbd3710b753a281de83f56",
+    "files": [
+      {
+        "path": "tools/notices/supplements/anise-LICENSE.txt",
+        "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5"
+      },
+      {
+        "path": "tools/notices/supplements/anise-AUTHORS.txt",
+        "sha256": "3041b5b9f60bbdf14ad44fc473112a155c544068ff7bb003d9ccd440b5f20624"
+      }
+    ]
+  },
+  {
+    "name": "worker-build",
+    "version": "0.8.3",
+    "profiles": [
+      "worker"
+    ],
+    "source": "https://github.com/cloudflare/workers-rs/tree/fe8acaa0dffd7ba3fa4216092b61d24f3614f136",
+    "files": [
+      {
+        "path": "tools/notices/supplements/worker-build-LICENSE.txt",
+        "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      }
+    ]
+  },
+  {
+    "name": "wasm-bindgen-cli-support",
+    "version": "0.2.122",
+    "profiles": [
+      "browser",
+      "worker"
+    ],
+    "source": "https://github.com/wasm-bindgen/wasm-bindgen/tree/ddd322514d87a4b21342b7ab9a9d70796fc60576",
+    "files": [
+      {
+        "path": "tools/notices/supplements/wasm-bindgen-cli-LICENSE.txt",
+        "sha256": "378f5840b258e2779c39418f3f2d7b2ba96f1c7917dd6be0713f88305dbda397"
+      }
+    ]
+  },
+  {
+    "name": "vite",
+    "version": "7.3.1",
+    "profiles": [
+      "browser"
+    ],
+    "source": "https://registry.npmjs.org/vite/-/vite-7.3.1.tgz",
+    "files": [
+      {
+        "path": "tools/notices/supplements/vite-LICENSE.txt",
+        "sha256": "2ef0b8a67599690e6abccc21a3678b54457b420fb402654112d45c4e71cce364"
+      }
+    ]
+  },
+  {
+    "name": "rust-standard-library",
+    "version": "1.96.0",
+    "profiles": [],
+    "source": "https://doc.rust-lang.org/1.96.0/COPYRIGHT-library.html",
+    "files": [
+      {
+        "path": "notices/RUST_LIBRARY_NOTICES.html",
+        "sha256": "78c163fcec50e64bfd85fedb850c273595602fafa2b41f30f75d4e410b80ee83"
+      }
+    ]
+  }
+]

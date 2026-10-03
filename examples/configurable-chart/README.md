@@ -74,3 +74,13 @@ The verifier requires the exact dataset hash in
 Git revision. Frozen captures include the dataset endpoints, polar house cases,
 and all supported Tropical/True Sky division and Ophiuchus settings. Fagan–Bradley
 serialization and all house methods also receive Wasm smoke checks.
+
+## Distribution notices
+
+Wasm preparation and the static build include `LICENSE`,
+`THIRD_PARTY_NOTICES.txt`, `THIRD_PARTY_NOTICES.html`, and
+`RUST_LIBRARY_NOTICES.html`. Preserve those files
+when publishing the output. The page's Third-party notices link provides the
+license texts and exact-version MPL source links to recipients. Builds fail if
+the checked-in notices are stale; refresh them using the
+[notice guide](../../tools/notices/README.md).

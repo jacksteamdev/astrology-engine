@@ -6,7 +6,7 @@ rust-version = "1.96"
 license = "MIT"
 publish = false
 description = "Immutable Chebyshev ephemeris evaluation and chart calculations"
-include = ["/src/**", "/Cargo.toml", "/Cargo.lock", "/LICENSE", "/THIRD_PARTY_NOTICES.md", "/README.md", "/data/manifest.json"]
+include = ["/src/**", "/Cargo.toml", "/Cargo.lock", "/LICENSE", "/THIRD_PARTY_NOTICES.md", "/notices/**", "/README.md", "/data/manifest.json"]
 
 [workspace]
 members = [".", "tools/dataset-builder"]

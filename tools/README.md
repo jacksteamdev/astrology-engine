@@ -187,3 +187,11 @@ documentation is exempt. Run the same check explicitly with
 `python3 tools/verification/check_prohibited_usage.py --index`, or use
 `--tree HEAD` to check a committed revision. CI also runs the checker and its
 integration tests.
+
+## Distributing the native builder
+
+Run `bun tools/notices/notices.ts package-builder` from the repository root to
+create `target/distribution/dataset-builder/` with the executable and its license
+notices. Distribute that directory together. A plain `cargo build` compiles the
+program but does not assemble a redistributable notice bundle. See the
+[notice guide](notices/README.md) for dependency updates and MPL source access.
