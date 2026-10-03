@@ -171,7 +171,8 @@ astronomical accuracy.
 See the [regular verification workflow](../.github/workflows/verify.yml) for the
 repository's formatting, linting, packaging, and local Wasm checks, and the
 [full-data workflow](../.github/workflows/full-data.yml) for explicit regeneration
-and reference-dataset parity runs.
+and reference-dataset parity runs. The [CI guide](ci/README.md) describes PR
+selection, independent jobs, tool caching and download failure handling.
 
 ## Commit checks
 

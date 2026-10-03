@@ -1,0 +1,5 @@
+{
+  "extends": "../notices/tsconfig.json",
+  "compilerOptions": { "resolveJsonModule": true },
+  "include": ["*.ts"]
+}
