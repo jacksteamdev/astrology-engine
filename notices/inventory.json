@@ -23,9 +23,9 @@
     "tools/jpl/requirements.lock": "c0ac24455f646794d26e301c76837ce671225e570cced8571deacad1f9f241b2",
     "tools/notices/README.md": "e7af2ae2d5a4ff5a75e8c19bd47c572817b146801949430b574f1f2e81740c00",
     "tools/notices/about.toml": "b53b2f6d8eac1e07fb95b8d564c748ab8e43a4e48eddad91a987a83d1f0842e1",
-    "tools/notices/collect.ts": "a4b1c76162bd91ef771caa721cd633f985f9060e264f625a5f22288bab5c7524",
+    "tools/notices/collect.ts": "21c7e477d486d4809fd82f3ce9d57585a2269c9a413f3f10eb489eedafc0db1b",
     "tools/notices/core.ts": "ffa4af5d7712a3569fc4cf9e057f8a909508252fa6676587702c41e7ec221ff6",
-    "tools/notices/notices.test.ts": "f1764f587ebb183b08d30790b5b19745e8ae7e1fcf7cb64b2f5a7220e65312e6",
+    "tools/notices/notices.test.ts": "43b0c50fddfb62d4282567c5cd6868f9a0c61f25cff3feeee61dae090acbc625",
     "tools/notices/notices.ts": "3cb532d7b852464e6edaba1b7f0edab2f910122365d8c6f74491bcf4b61afea6",
     "tools/notices/reviewed-files.json": "42f7dfa5c05bed9ed6f878c9f4daefe1a98d38b311178128baf462d637d9a631",
     "tools/notices/supplements.json": "197fddf2f43ff00a17ca0117e9a579e86169a8516cbd11afe63794e6523cd5e4",
@@ -245,7 +245,7 @@
           "source": "https://static.crates.io/crates/web-time/web-time-1.1.0.crate"
         }
       ],
-      "sha256": "e46ba7c62d8b767ca1d7378cbb73ea50f4751947421cd14de060df5d15278a57"
+      "sha256": "516099795b9e6f9e58b50a880d8f7aa61892af4ae2a3f4b6a4dab82cd9d5ed28"
     },
     "builder": {
       "packages": [
@@ -772,7 +772,7 @@
           "source": "https://static.crates.io/crates/zmij/zmij-1.0.21.crate"
         }
       ],
-      "sha256": "a2b85d0b7f421f391274142a633c2d6caf6e1d80c45a8444df5128efeb66247c"
+      "sha256": "324d9c53f727ee67e9769852f77f2ff70c210c4687cf78a3e13b4d92666a6311"
     },
     "worker": {
       "packages": [
@@ -1353,7 +1353,7 @@
           "source": "https://static.crates.io/crates/zmij/zmij-1.0.21.crate"
         }
       ],
-      "sha256": "67336f0c8b69009e746e94a2dbc47f835de2ffd632894cdb2e7fb501b3e7600a"
+      "sha256": "55113b10f8adc150b2e804708f7d1886cf908c1d60e568ad54410d08b91fa625"
     },
     "browser": {
       "packages": [
@@ -1586,7 +1586,7 @@
           "source": "https://static.crates.io/crates/zmij/zmij-1.0.21.crate"
         }
       ],
-      "sha256": "d24f71b13571ae9d33e33e775348874ea3db1f2bd206e686a0a15ca2ec0f768f"
+      "sha256": "7331396828eaf7ca61a61db195e59b046d0bdb9e1d484e508a24a5b972bb147f"
     }
   }
 }

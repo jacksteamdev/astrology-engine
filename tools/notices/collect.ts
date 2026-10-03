@@ -18,10 +18,13 @@ const legalFiles = (directory: string): string[] => {
   });
   return walk(directory).sort();
 };
-export const validateCollection = (data: Collected, reviewed: Set<string>): void => {
+export const validateCollection = (data: Collected, reviewed: Set<string>, firstPartyManifests = new Set<string>()): void => {
   for (const { package: p, license } of data.crates) {
-    if (!p.source) continue;
-    if (!p.source.startsWith('registry+')) throw new Error(`Review non-registry source: ${key(p)}`);
+    if (!p.source) {
+      if (!firstPartyManifests.has(p.manifest_path) || p.license !== 'MIT') throw new Error(`Unreviewed path dependency: ${key(p)}`);
+      continue;
+    }
+    if (p.source !== 'registry+https://github.com/rust-lang/crates.io-index') throw new Error(`Review unsupported registry/source: ${key(p)}`);
     const found = data.licenses.filter(l => l.used_by.some(u => key(u.crate) === key(p)));
     if (!p.license || ['Unknown', 'Ignore'].includes(license) || found.length === 0 || found.some(l => !l.text.trim())) {
       throw new Error(`Unresolved license: ${key(p)}`);
@@ -54,7 +57,11 @@ export const collect = (root: string, profile: Profile): { text: string; package
     if (sha256(text) !== item.sha256) throw new Error(`Reviewed license changed: ${key(item)}/${item.path}`);
     verified.add(key(item));
   }
-  validateCollection(data, verified);
+  const firstPartyManifests = new Set([
+    'Cargo.toml', 'tools/dataset-builder/Cargo.toml',
+    'examples/cloudflare-worker/Cargo.toml', 'examples/configurable-chart/wasm/Cargo.toml',
+  ].map(path => join(root, path)));
+  validateCollection(data, verified, firstPartyManifests);
   const packages = data.crates.filter(c => c.package.source).map(({ package: p }) => ({ name: p.name, version: p.version, license: p.license!, source: sourceUrl(p) })).sort((a, b) => key(a).localeCompare(key(b), 'en'));
   const texts = new Map<string, { text: string; labels: Set<string> }>();
   const add = (text: string, label: string) => {
@@ -100,5 +107,5 @@ export const collect = (root: string, profile: Profile): { text: string; package
     '\nLicense and copyright texts (including upstream alternatives and notices)',
   ].filter(Boolean).join('\n\n');
   const sections = [...texts.values()].map(t => ({ ...t, heading: [...t.labels].sort().join('\n') })).sort((a,b) => a.heading.localeCompare(b.heading, 'en'));
-  return { packages, text: header + '\n\n' + sections.map(s => `${'='.repeat(72)}\n${s.heading}\n${'='.repeat(72)}\n\n${s.text.trim()}\n`).join('\n') };
+  return { packages, text: header + '\n\n' + sections.map(s => `${'='.repeat(72)}\n${s.heading}\n${'='.repeat(72)}\n\n${s.text}\n`).join('\n') };
 };

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, rmSync, appendFileSync, unlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { check, copy, html, inputs, profileNames, read, write } from './core.ts';
+import { check, copy, html, inputs, profileNames, read, supplements, write } from './core.ts';
 import { validateCollection } from './collect.ts';
 
 const root = resolve(import.meta.dir, '../..');
@@ -51,4 +51,18 @@ test('unknown and synthesized license results need explicit review', () => {
 test('HTML treats third-party text as text, not executable markup', () => {
   assert.ok(!html('<script>alert("x")</script>').includes('<script>'));
   assert.match(html('https://example.test/source'), /<a href="https:\/\/example.test\/source">/);
+});
+
+test('non-crates.io and unreviewed path dependencies cannot acquire misleading notices', () => {
+  const p = { name: 'external', version: '1.0.0', license: 'MIT', manifest_path: '/external/Cargo.toml', source: 'registry+https://example.test/index' as string | null };
+  const data = { crates: [{ package: p, license: 'MIT' }], licenses: [{ id: 'MIT', text: 'license', source_path: '/external/LICENSE', used_by: [{ crate: p }] }] };
+  assert.throws(() => validateCollection(data, new Set()), /unsupported registry/);
+  p.source = null;
+  assert.throws(() => validateCollection(data, new Set()), /Unreviewed path dependency/);
+});
+test('upstream supplemental license bytes survive rendering without trimming', () => {
+  for (const entry of supplements(root)) for (const profile of entry.profiles) {
+    const bundle = read(root, `notices/${profile}.txt`);
+    for (const file of entry.files) assert.ok(bundle.includes(read(root, file.path)), `${file.path} must be preserved verbatim in ${profile}`);
+  }
 });
