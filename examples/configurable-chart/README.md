@@ -84,3 +84,37 @@ when publishing the output. The page's Third-party notices link provides the
 license texts and exact-version MPL source links to recipients. Builds fail if
 the checked-in notices are stale; refresh them using the
 [notice guide](../../tools/notices/README.md).
+
+## Optional two-year browser downloads
+
+The full-file example remains available. To select a small dataset by UTC birth
+year, build the native extraction tool and prepare an empty output directory:
+
+```sh
+# From the repository root:
+cargo build --release --locked -p dataset-builder
+cd examples/configurable-chart
+bun prepare-segments.ts /absolute/path/to/cheb.bin /absolute/path/to/new-segments
+VITE_EPHEMERIS_SEGMENTS=true EPHEMERIS_SEGMENTS_DIR=/absolute/path/to/new-segments bun run dev
+```
+
+For a birth in year Y the recipe extracts Y-1 through Y+1, with a day of public
+padding and the source's fitted guards. The original coefficients are copied,
+not fitted again. Date changes reuse the Wasm instance, passing different bytes
+to the existing stateless calculation export. The browser verifies SHA-256 and
+keeps three recent files in memory. A static deployment must separately publish
+the generated directory at `/ephemeris/` and build with
+`VITE_EPHEMERIS_SEGMENTS=true`; the local environment path is not bundled.
+
+This overlap accommodates a natal chart and the Human Design Sun crossing 88°
+before birth plus its design chart. It is not a promise for arbitrary searches
+up to the solver's 730-day scan bound. Source coverage still limits earliest
+birth/design dates. No Human Design UI is added by this example.
+
+After building Wasm, `bun verify-segments.ts /source/cheb.bin /segments` compares
+full and extracted data for every birth year, seasons, New Year edges and leap
+days, including the `design_moment_et(bytes, utc)` export and design charts.
+This is same-engine Wasm parity, not independent astronomical validation.
+Coefficient bytes are unchanged; arbitrary fractional block origins may still
+introduce evaluation rounding when rebased. Real-data parity is checked at
+1e-12 degrees, with exact design crossing ET equality.

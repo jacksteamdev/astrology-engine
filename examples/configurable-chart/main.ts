@@ -2,6 +2,9 @@
 // SPDX-License-Identifier: MPL-2.0
 
 import init, { calculate } from './engine/chart.js';
+import { loadDataset } from './dataset.ts';
+let initialization: ReturnType<typeof init> | undefined;
+const initialize = () => initialization ??= init().catch(error => { initialization = undefined; throw error; });
 
 const form = document.querySelector<HTMLFormElement>('#chart-form')!;
 const output = document.querySelector<HTMLElement>('#result')!;
@@ -17,14 +20,6 @@ const syncControls = () => {
 reference.addEventListener('change', syncControls);
 divisions.addEventListener('change', () => { ophiuchus.value = 'enabled'; syncControls(); });
 syncControls();
-let datasetBytes: Uint8Array | undefined;
-const loadDataset = async (): Promise<Uint8Array> => {
-  if (datasetBytes) return datasetBytes;
-  const response = await fetch('/ephemeris.bin');
-  if (!response.ok) throw new Error(`Could not load the ephemeris: ${await response.text()}`);
-  datasetBytes = new Uint8Array(await response.arrayBuffer());
-  return datasetBytes;
-};
 form.addEventListener('submit', async event => {
   event.preventDefault();
   const button = form.querySelector('button')!;
@@ -33,9 +28,9 @@ form.addEventListener('submit', async event => {
   output.textContent = '';
   try {
     status.textContent = 'Loading ephemeris…';
-    const [, bytes] = await Promise.all([init(), loadDataset()]);
-    status.textContent = 'Calculating…';
     const fields = new FormData(form);
+    const [, bytes] = await Promise.all([initialize(), loadDataset(String(fields.get('utc')))]);
+    status.textContent = 'Calculating…';
     const request = {
       instant: {scale: 'utc', value: String(fields.get('utc'))},
       latitude: Number(fields.get('latitude')), longitude: Number(fields.get('longitude')),

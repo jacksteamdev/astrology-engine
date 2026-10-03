@@ -15,7 +15,7 @@
     "examples/configurable-chart/build-wasm.ts": "8f5c678ced9571e6a13aa24de2fba97756c6d123498da7a5166eb3daf2ea8721",
     "examples/configurable-chart/bun.lock": "ecbff363cd50d08e60a0b6a9080b4d616ee816a89743c7c8e4e05bc571cde514",
     "examples/configurable-chart/package.json": "0ee9981cd2e4d4530a7b58518fbecffd52284ef89d2b176a35330af51bb05d46",
-    "examples/configurable-chart/vite.config.ts": "42bfe8e4636cbbb4c91cd3895ec92531f304b042a05d746638bef5a530384b37",
+    "examples/configurable-chart/vite.config.ts": "cf361ed4bb792e9fcb8206c95f8c826f0cefc3928249ed6ff8f68b9a52899cb6",
     "examples/configurable-chart/wasm/Cargo.lock": "ed5c93ef2796121c4a906e7bbe77d0189d5a1c38a75356a9c649827c0310c9c5",
     "examples/configurable-chart/wasm/Cargo.toml": "6ab9b88fe1063dc7bef0e05466f8b8aa01dde644629c1b6bf15392f2c073342c",
     "notices/RUST_LIBRARY_NOTICES.html": "78c163fcec50e64bfd85fedb850c273595602fafa2b41f30f75d4e410b80ee83",

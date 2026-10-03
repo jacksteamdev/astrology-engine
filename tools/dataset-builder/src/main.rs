@@ -285,6 +285,16 @@ fn fit(args: &[String]) {
 
 fn main() {
     let args: Vec<String> = std::env::args().skip(1).collect();
+    if matches!(
+        args.first().map(String::as_str),
+        Some("extract" | "inspect")
+    ) {
+        if let Err(error) = dataset_builder::extract::command(&args) {
+            eprintln!("{error}");
+            std::process::exit(1);
+        }
+        return;
+    }
     if args.first().map(String::as_str) != Some("fit") {
         eprintln!("usage: dataset-builder fit --de440s PATH --ceres PATH --chiron PATH --out PATH --report PATH --manifest PATH [--fingerprint HEX]");
         std::process::exit(2);

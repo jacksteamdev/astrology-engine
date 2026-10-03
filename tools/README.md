@@ -196,3 +196,28 @@ create `target/distribution/dataset-builder/` with the executable and its licens
 notices. Distribute that directory together. A plain `cargo build` compiles the
 program but does not assemble a redistributable notice bundle. See the
 [notice guide](notices/README.md) for dependency updates and MPL source access.
+
+## Extract a smaller existing dataset
+
+`dataset-builder extract` copies complete coefficient blocks from an existing
+HDCHEB01 file. It does not acquire kernels or refit curves. Public bounds are
+inclusive, must be ordered and inside the source public domain, and use explicit
+UTC. The source's fitted guards are preserved, with a minimum half day on each
+side for speed samples. Output paths must not already exist.
+
+```sh
+cargo run --release --locked -p dataset-builder -- extract \
+  --input /path/to/cheb.bin \
+  --start-utc 1999-12-31T00:00:00Z --end-utc 2002-01-02T00:00:00Z \
+  --out /new/path/2000-2002.bin --manifest /new/path/2000-2002.json
+cargo run --release --locked -p dataset-builder -- inspect --input /path/to/cheb.bin
+```
+
+The manifest records exact public and fitted ET/UTC bounds, source and output
+SHA-256, byte length, series count and engine fingerprint. Both header/table
+and coefficient CRCs are checked. Missing series support and non-finite
+coefficients are rejected before output creation. The runtime and R2 Worker
+adapter continue to accept the full original binary unchanged.
+
+Annual overlapping files are a host delivery policy, demonstrated by the
+[configurable-chart recipe](../examples/configurable-chart/README.md#optional-two-year-browser-downloads).
