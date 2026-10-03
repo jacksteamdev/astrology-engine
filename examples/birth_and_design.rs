@@ -3,7 +3,7 @@
 
 use astrology_engine::{
     calculate_chart, find_sun_crossing, Body, ChartInput, Direction, Ephemeris, Epoch, HouseSystem,
-    Location, SunSearchInput,
+    Location, SignDivisions, SunSearchInput, ZodiacConfiguration, ZodiacReference,
 };
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -25,6 +25,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 epoch,
                 location,
                 house_system: HouseSystem::Equal,
+                zodiac: ZodiacConfiguration {
+                    reference: ZodiacReference::Tropical,
+                    divisions: SignDivisions::Equal,
+                    ophiuchus: None,
+                },
             },
         )
     };
@@ -33,9 +38,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let birth_sun = birth_chart
         .bodies
         .iter()
-        .find(|body| body.name == Body::Sun.wire_name())
+        .find(|body| body.values.name == Body::Sun.wire_name())
         .ok_or("Birth chart has no Sun")?;
-    let target_longitude = (birth_sun.longitude - 88.0).rem_euclid(360.0);
+    let target_longitude = (birth_sun.values.longitude - 88.0).rem_euclid(360.0);
     let design_moment = find_sun_crossing(
         &ephemeris,
         SunSearchInput {
@@ -54,7 +59,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     for (birth, design) in birth_chart.bodies.iter().zip(&design_chart.bodies) {
         println!(
             "{:<20} {:>12.6} {:>12.6}",
-            birth.name, birth.longitude, design.longitude
+            birth.values.name, birth.values.longitude, design.values.longitude
         );
     }
 

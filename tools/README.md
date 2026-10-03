@@ -123,6 +123,7 @@ responses:
 
 ```sh
 .venv/bin/python tools/verification/test_compare.py
+.venv/bin/python tools/verification/test_chart_migration.py
 .venv/bin/python tools/verification/test_acquisition.py
 .venv/bin/python tools/verification/test_generation.py
 .venv/bin/python tools/verification/check_boundaries.py

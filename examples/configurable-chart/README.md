@@ -1,6 +1,6 @@
 # Configurable chart in a browser
 
-This example runs the public configurable-chart API as Wasm. The browser fetches
+This example runs the public `calculate_chart` API as Wasm. The browser fetches
 `/ephemeris.bin` from the local server and reuses those bytes for subsequent
 calculations. Enter a UTC birth time, coordinates and chart settings. There are
 no private website or birth-resolver dependencies.
@@ -61,7 +61,7 @@ The result includes effective settings, the convention revision, sign sectors,
 twelve house cusps, and requested/actual house systems. True Sky preserves
 tropical speeds, identified by `speed_reference: "tropical"`.
 See [the convention contract](../../docs/chart-conventions.md) for the separate
-zodiac and house tables, Ophiuchus handling, and Fagan–Bradley compatibility.
+zodiac and house tables, Ophiuchus handling, and Fagan–Bradley conventions.
 
 To replay recorded regression charts through this Wasm adapter:
 

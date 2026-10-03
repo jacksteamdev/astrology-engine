@@ -1,23 +1,28 @@
 # Configurable natal charts
 
-`calculate_configured_chart` accepts the existing `ChartInput` and an explicit
-`ZodiacConfiguration`. Its references are Tropical, Fagan–Bradley and Chimenti
-True Sky. Sign divisions can be equal or, for True Sky, constellation midpoints.
-The original `calculate_chart` and `calculate_sidereal_chart` contracts remain
-available unchanged, including absent tropical Whole Sign cusps.
+`calculate_chart` accepts an explicit `ChartInput`, including its `zodiac` field
+of type `ZodiacConfiguration`. References are Tropical, Fagan–Bradley and Chimenti True
+Sky. Sign divisions can be equal or, for True Sky, constellation midpoints.
+There is one chart entry point and one `ChartValues` result contract.
 
 ```rust
 use astrology_engine::{
-    calculate_configured_chart, ChartInput, Ephemeris, Ophiuchus,
+    calculate_chart, ChartInput, Ephemeris, Ophiuchus,
     SignDivisions, ZodiacConfiguration, ZodiacReference,
 };
 
 fn chart(ephemeris: &Ephemeris, input: ChartInput) -> Result<(), Box<dyn std::error::Error>> {
-    let values = calculate_configured_chart(ephemeris, input, ZodiacConfiguration {
-        reference: ZodiacReference::TrueSky,
-        divisions: SignDivisions::Constellation,
-        ophiuchus: Some(Ophiuchus::Enabled),
-    })?;
+    let values = calculate_chart(
+        ephemeris,
+        ChartInput {
+            zodiac: ZodiacConfiguration {
+                reference: ZodiacReference::TrueSky,
+                divisions: SignDivisions::Constellation,
+                ophiuchus: Some(Ophiuchus::Enabled),
+            },
+            ..input
+        },
+    )?;
     println!("{}: {:?}", values.convention_revision, values.cusps);
     Ok(())
 }
@@ -53,8 +58,8 @@ retains the original instant's precision.
 
 True Sky preserves the source reading layer's tropical longitudinal speeds and
 equatorial declinations. Consequently `speed_reference` is `tropical`, even
-though the returned longitudes use True Sky. Fagan–Bradley delegates to the
-existing engine implementation and returns `selected-reference` speeds. The four
+though the returned longitudes use True Sky. Fagan–Bradley applies the engine's
+ayanamsa and its daily rate, returning `selected-reference` speeds. The four
 angle speeds remain zero, meaning not calculated. Speeds are degrees per day;
 longitudes, declinations, offsets, sector starts and widths are degrees.
 
@@ -78,6 +83,29 @@ starts in the merged Scorpio sector at 210.1972°. The twelve house starts are:
 With Ophiuchus disabled, the same longitude is Scorpio, 17.8028° into its
 25.5846° sector. The house starts are unchanged.
 
+Tropical preserves the underlying numerical positions. At extreme latitudes,
+floating-point angle calculations can round to 360° (equivalent to 0°); sign
+lookup wraps those longitudes into [0°, 360°).
+
+## Migrating the chart API
+
+Replace `calculate_sidereal_chart` and `calculate_configured_chart` calls with
+`calculate_chart`, and put the chosen `ZodiacConfiguration` in `ChartInput.zodiac`.
+Former tropical callers must explicitly choose Tropical with Equal divisions and
+`ophiuchus: None`. The runtime supplies no defaults or legacy wrappers.
+
+`ChartValues` replaces the former configured and sidereal result types. Each
+body is a `ChartEntry` with `values: ChartBody` and `sign: SignPosition`; serialized
+body fields remain flattened. Use `reference_offset_degrees` for the reference
+offset (the ayanamsa for Fagan–Bradley), and the typed `house_system` for the actual
+method. Cusps are always `[f64; 12]`, including tropical Whole Sign houses.
+Overlapping polar house sets now fail for every reference.
+
+The Worker example continues to use its existing tropical HTTP request and
+response fields, including omitted Whole Sign cusps. Overlapping polar charts
+follow its existing calculation-error mapping: public HTTP 500 with `internal`,
+and the explicit overlap message in verification captures.
+
 ## Browser and host integration
 
 The [standalone browser/Wasm example](../examples/configurable-chart/README.md)
@@ -91,8 +119,8 @@ remains the host's responsibility.
 
 [Regression replay instructions](../tools/verification/conventions.md) describe
 how to compare current outputs with the committed fixtures. Structural checks
-also cover invalid settings, non-finite input, coverage admission and existing
-API compatibility.
+also cover invalid settings, non-finite input, coverage admission and unified
+chart behavior.
 
 Boundary tables and assignments match the recorded outputs exactly.
 Chart comparisons use a 1e-12 absolute tolerance for native/Wasm floating-point

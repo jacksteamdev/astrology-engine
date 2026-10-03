@@ -4,17 +4,25 @@
 #[path = "../tools/verification/common/mod.rs"]
 mod common;
 use astrology_engine::{
-    calculate_chart, calculate_sidereal_chart, coverage, fagan_bradley_ayanamsa, Body, ChartInput,
-    Ephemeris, Epoch, HouseSystem, Location,
+    calculate_chart, coverage, fagan_bradley_ayanamsa, ActualHouseSystem, ChartInput, Ephemeris,
+    Epoch, HouseSystem, Location, SignDivisions, ZodiacConfiguration, ZodiacReference,
 };
 
+fn zodiac(reference: ZodiacReference) -> ZodiacConfiguration {
+    ZodiacConfiguration {
+        reference,
+        divisions: SignDivisions::Equal,
+        ophiuchus: None,
+    }
+}
+
 #[test]
-fn sidereal_conversion_keeps_tropical_results_and_physical_declinations() {
+fn sidereal_conversion_preserves_physical_declinations_and_angle_speeds() {
     let ephemeris = Ephemeris::parse(common::polynomial_blob()).unwrap();
     let window = coverage(&ephemeris);
     for et in [window.lo_et, 0.0, window.hi_et] {
         for latitude in [0.0, 51.5, 80.0, -80.0] {
-            for system in [
+            for house_system in [
                 HouseSystem::Equal,
                 HouseSystem::WholeSign,
                 HouseSystem::Placidus,
@@ -25,49 +33,52 @@ fn sidereal_conversion_keeps_tropical_results_and_physical_declinations() {
                         latitude,
                         longitude: 0.0,
                     },
-                    house_system: system,
+                    house_system,
+                    zodiac: zodiac(ZodiacReference::Tropical),
                 };
-                let tropical = calculate_chart(&ephemeris, input).unwrap();
-                let result = calculate_sidereal_chart(&ephemeris, input);
-                let tropical_sweep: f64 = tropical.cusps.as_ref().map_or(360.0, |cusps| {
-                    (0..12)
-                        .map(|i| (cusps[(i + 1) % 12] - cusps[i]).rem_euclid(360.0))
-                        .sum()
-                });
-                if (tropical_sweep - 360.0).abs() > 1e-8 {
-                    assert!(result.is_err());
-                    assert_eq!(calculate_chart(&ephemeris, input).unwrap(), tropical);
-                    continue;
-                }
-                let sidereal = result.unwrap();
-                assert_eq!(calculate_chart(&ephemeris, input).unwrap(), tropical);
+                let tropical = calculate_chart(&ephemeris, input);
+                let sidereal = calculate_chart(
+                    &ephemeris,
+                    ChartInput {
+                        zodiac: zodiac(ZodiacReference::FaganBradley),
+                        ..input
+                    },
+                );
+                let (tropical, sidereal) = match (tropical, sidereal) {
+                    (Ok(t), Ok(s)) => (t, s),
+                    (Err(t), Err(s)) => {
+                        assert!(t.to_string().contains("overlap"));
+                        assert_eq!(t.to_string(), s.to_string());
+                        continue;
+                    }
+                    other => panic!("Reference validation mismatch: {other:?}"),
+                };
                 assert_eq!(sidereal.bodies.len(), 19);
                 for (index, (t, s)) in tropical.bodies.iter().zip(&sidereal.bodies).enumerate() {
-                    assert_eq!(t.name, s.name);
-                    assert_eq!(t.declination, s.declination);
+                    assert_eq!(t.values.name, s.values.name);
+                    assert_eq!(t.values.declination, s.values.declination);
                     assert_eq!(
-                        s.longitude,
-                        (t.longitude - sidereal.ayanamsa_degrees).rem_euclid(360.0)
+                        s.values.longitude,
+                        (t.values.longitude - sidereal.reference_offset_degrees).rem_euclid(360.0)
                     );
                     if index >= 15 {
-                        assert_eq!(s.speed, 0.0);
+                        assert_eq!(s.values.speed, 0.0);
                     }
                 }
-                assert_eq!(sidereal.cusps.len(), 12);
-                if system == HouseSystem::WholeSign {
-                    let asc = sidereal
-                        .bodies
-                        .iter()
-                        .find(|b| b.name == Body::AscendantSymbol.wire_name())
-                        .unwrap()
-                        .longitude;
-                    assert_eq!(sidereal.cusps[0], (asc / 30.0).floor() * 30.0);
-                    assert!(sidereal.cusps.iter().all(|cusp| cusp % 30.0 == 0.0));
-                    assert_eq!(sidereal.house_system, "whole-sign");
-                    assert!(tropical.cusps.is_none());
+                if house_system == HouseSystem::WholeSign {
+                    assert_eq!(
+                        sidereal.cusps[0],
+                        (sidereal.bodies[15].values.longitude / 30.0).floor() * 30.0
+                    );
+                    assert!(sidereal.cusps.iter().all(|c| c % 30.0 == 0.0));
+                    assert_eq!(sidereal.house_system, ActualHouseSystem::WholeSign);
+                    assert_eq!(tropical.cusps.len(), 12);
                 } else {
-                    for (t, s) in tropical.cusps.unwrap().iter().zip(&sidereal.cusps) {
-                        assert_eq!(*s, (t - sidereal.ayanamsa_degrees).rem_euclid(360.0));
+                    for (t, s) in tropical.cusps.iter().zip(&sidereal.cusps) {
+                        assert_eq!(
+                            *s,
+                            (t - sidereal.reference_offset_degrees).rem_euclid(360.0)
+                        );
                     }
                 }
             }
@@ -85,10 +96,11 @@ fn speeds_include_the_changing_origin() {
             longitude: 0.0,
         },
         house_system: HouseSystem::Placidus,
+        zodiac: zodiac(ZodiacReference::FaganBradley),
     };
-    let chart = calculate_sidereal_chart(&ephemeris, input).unwrap();
-    assert_eq!(chart.house_system, "placidus");
-    let before = calculate_sidereal_chart(
+    let chart = calculate_chart(&ephemeris, input).unwrap();
+    assert_eq!(chart.house_system, ActualHouseSystem::Placidus);
+    let before = calculate_chart(
         &ephemeris,
         ChartInput {
             epoch: Epoch::from_et_seconds(-43200.0),
@@ -96,7 +108,7 @@ fn speeds_include_the_changing_origin() {
         },
     )
     .unwrap();
-    let after = calculate_sidereal_chart(
+    let after = calculate_chart(
         &ephemeris,
         ChartInput {
             epoch: Epoch::from_et_seconds(43200.0),
@@ -105,58 +117,70 @@ fn speeds_include_the_changing_origin() {
     )
     .unwrap();
     for i in 0..15 {
-        let rate = (after.bodies[i].longitude - before.bodies[i].longitude + 180.0)
+        let rate = (after.bodies[i].values.longitude - before.bodies[i].values.longitude + 180.0)
             .rem_euclid(360.0)
             - 180.0;
-        assert!((chart.bodies[i].speed - rate).abs() < 1e-12);
+        assert!((chart.bodies[i].values.speed - rate).abs() < 1e-12);
     }
     for utc in ["1700-01-01T00:00:00Z", "2300-01-01T00:00:00Z"] {
         assert!(fagan_bradley_ayanamsa(utc.parse().unwrap()).is_err());
+        assert!(calculate_chart(
+            &ephemeris,
+            ChartInput {
+                epoch: utc.parse().unwrap(),
+                ..input
+            }
+        )
+        .is_err());
+    }
+    for utc in ["1800-01-02T00:00:00 TT", "2199-12-31T00:00:00 TT"] {
+        assert!(fagan_bradley_ayanamsa(utc.parse().unwrap()).is_ok());
     }
 }
 
 #[test]
-fn valid_polar_fallback_is_reported_but_overlapping_cusps_are_rejected() {
+fn all_references_report_valid_polar_fallback_and_reject_overlapping_cusps() {
     let ephemeris = Ephemeris::parse(common::polynomial_blob()).unwrap();
-    let input = ChartInput {
-        epoch: "2000-01-01T12:00:00Z".parse().unwrap(),
-        location: Location {
-            latitude: 80.0,
-            longitude: 90.0,
-        },
-        house_system: HouseSystem::Placidus,
-    };
-    let valid = calculate_sidereal_chart(&ephemeris, input).unwrap();
-    assert_eq!(valid.house_system, "porphyry");
-    let sweep: f64 = (0..12)
-        .map(|i| (valid.cusps[(i + 1) % 12] - valid.cusps[i]).rem_euclid(360.0))
-        .sum();
-    assert!((sweep - 360.0).abs() < 1e-8);
-    let invalid = ChartInput {
-        location: Location {
-            latitude: 80.0,
-            longitude: 20.0,
-        },
-        ..input
-    };
-    let tropical = calculate_chart(&ephemeris, invalid).unwrap();
-    let cusps = tropical.cusps.unwrap();
-    let sweep: f64 = (0..12)
-        .map(|i| (cusps[(i + 1) % 12] - cusps[i]).rem_euclid(360.0))
-        .sum();
-    assert!((sweep - 1080.0).abs() < 1e-8);
-    let error = calculate_sidereal_chart(&ephemeris, invalid)
-        .unwrap_err()
-        .to_string();
-    assert!(error.contains("Choose Equal or Whole Sign"));
-    for house_system in [HouseSystem::Equal, HouseSystem::WholeSign] {
-        assert!(calculate_sidereal_chart(
-            &ephemeris,
-            ChartInput {
-                house_system,
-                ..invalid
-            }
-        )
-        .is_ok());
+    for reference in [
+        ZodiacReference::Tropical,
+        ZodiacReference::FaganBradley,
+        ZodiacReference::TrueSky,
+    ] {
+        let input = ChartInput {
+            epoch: "2000-01-01T12:00:00Z".parse().unwrap(),
+            location: Location {
+                latitude: 80.0,
+                longitude: 90.0,
+            },
+            house_system: HouseSystem::Placidus,
+            zodiac: zodiac(reference),
+        };
+        let valid = calculate_chart(&ephemeris, input).unwrap();
+        assert_eq!(valid.house_system, ActualHouseSystem::Porphyry);
+        let sweep: f64 = (0..12)
+            .map(|i| (valid.cusps[(i + 1) % 12] - valid.cusps[i]).rem_euclid(360.0))
+            .sum();
+        assert!((sweep - 360.0).abs() < 1e-8);
+        let invalid = ChartInput {
+            location: Location {
+                latitude: 80.0,
+                longitude: 20.0,
+            },
+            ..input
+        };
+        assert!(calculate_chart(&ephemeris, invalid)
+            .unwrap_err()
+            .to_string()
+            .contains("Choose Equal or Whole Sign"));
+        for house_system in [HouseSystem::Equal, HouseSystem::WholeSign] {
+            assert!(calculate_chart(
+                &ephemeris,
+                ChartInput {
+                    house_system,
+                    ..invalid
+                }
+            )
+            .is_ok());
+        }
     }
 }

@@ -69,10 +69,10 @@ async fn validate_dataset(_: Request, ctx: RouteContext<()>) -> Result<Response>
         for fraction in [0.0, 0.25, 0.5, 0.75, 1.0] {
             let epoch = Epoch::from_et_seconds(domain.lo_et + (domain.hi_et - domain.lo_et) * fraction);
             let chart = calculate_chart(ephemeris, ChartInput {
-                epoch, location: Location { latitude: 45.0, longitude: -90.0 }, house_system: HouseSystem::Placidus,
+                epoch, location: Location { latitude: 45.0, longitude: -90.0 }, house_system: HouseSystem::Placidus, zodiac: ZodiacConfiguration { reference: ZodiacReference::Tropical, divisions: SignDivisions::Equal, ophiuchus: None },
             })?;
             assert_eq!(chart.bodies.len(), 19);
-            assert!(chart.bodies.iter().all(|b| b.longitude.is_finite() && b.speed.is_finite() && b.declination.is_finite()));
+            assert!(chart.bodies.iter().all(|b| b.values.longitude.is_finite() && b.values.speed.is_finite() && b.values.declination.is_finite()));
             if fraction == 0.5 {
                 for direction in [Direction::Backward, Direction::Forward] {
                     assert!(find_sun_crossing(ephemeris, SunSearchInput { epoch, direction, target_longitude: 0.0 })?.is_some());

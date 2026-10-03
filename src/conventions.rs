@@ -2,12 +2,7 @@
 // SPDX-License-Identifier: MPL-2.0
 
 //! Explicit chart conventions preserved by regression fixtures.
-use crate::astro::houses::{compute_angles, placidus_cusps_with_fallback};
-use crate::astro::AstroTime;
-use crate::{
-    calculate_chart, calculate_sidereal_chart, Body, CalculationError, ChartBody, ChartInput,
-    Ephemeris, Epoch, HouseSystem,
-};
+use crate::{CalculationError, Epoch};
 use serde::{Deserialize, Serialize};
 
 pub const CONVENTION_REVISION: &str = "astrology-engine-conventions-v1";
@@ -126,7 +121,7 @@ pub struct SignPosition {
     pub width_degrees: f64,
 }
 
-fn sectors(config: ZodiacConfiguration) -> Vec<SignSector> {
+pub(crate) fn sectors(config: ZodiacConfiguration) -> Vec<SignSector> {
     let table: &[(Sign, f64)] = match config.divisions {
         SignDivisions::Equal => &EQUAL,
         SignDivisions::Constellation => &CONSTELLATION,
@@ -154,7 +149,7 @@ pub fn zodiac_sectors(config: ZodiacConfiguration) -> Result<Vec<SignSector>, Ca
     Ok(sectors(effective_configuration(config)?))
 }
 
-fn normalize(longitude: f64) -> Result<f64, CalculationError> {
+pub(crate) fn normalize(longitude: f64) -> Result<f64, CalculationError> {
     if !longitude.is_finite() {
         return Err(CalculationError::InvalidInput("Longitude must be finite"));
     }
@@ -166,7 +161,7 @@ fn normalize(longitude: f64) -> Result<f64, CalculationError> {
     })
 }
 
-fn position(longitude: f64, table: &[SignSector]) -> SignPosition {
+pub(crate) fn position(longitude: f64, table: &[SignSector]) -> SignPosition {
     let sector = table
         .iter()
         .rev()
@@ -187,7 +182,7 @@ pub fn assign_sign(
     Ok(position(normalize(longitude)?, &zodiac_sectors(config)?))
 }
 
-fn house_sectors(config: ZodiacConfiguration) -> Vec<SignSector> {
+pub(crate) fn house_sectors(config: ZodiacConfiguration) -> Vec<SignSector> {
     sectors(ZodiacConfiguration {
         ophiuchus: Some(Ophiuchus::Disabled),
         ..config
@@ -243,31 +238,7 @@ pub enum SpeedReference {
     SelectedReference,
 }
 
-#[derive(Clone, Debug, PartialEq, Serialize)]
-pub struct ConfiguredBody {
-    #[serde(flatten)]
-    pub values: ChartBody,
-    pub sign: SignPosition,
-}
-
-#[derive(Clone, Debug, PartialEq, Serialize)]
-pub struct ConfiguredChartValues {
-    pub configuration: ZodiacConfiguration,
-    pub convention_revision: &'static str,
-    pub reference_offset_degrees: f64,
-    /// True Sky preserves source tropical speeds; Fagan–Bradley corrects them.
-    /// The four angle speeds remain zero (not calculated) for every reference.
-    pub speed_reference: SpeedReference,
-    pub bodies: Vec<ConfiguredBody>,
-    pub zodiac_sectors: Vec<SignSector>,
-    /// Present only for Whole Sign; this table may differ from zodiac sectors.
-    pub house_sectors: Option<Vec<SignSector>>,
-    pub cusps: [f64; 12],
-    pub requested_house_system: HouseSystem,
-    pub house_system: ActualHouseSystem,
-}
-
-fn checked_cusps(cusps: Vec<f64>) -> Result<[f64; 12], CalculationError> {
+pub(crate) fn checked_cusps(cusps: Vec<f64>) -> Result<[f64; 12], CalculationError> {
     let cusps: [f64; 12] = cusps
         .try_into()
         .map_err(|_| CalculationError::InvalidInput("Expected twelve house cusps"))?;
@@ -281,119 +252,4 @@ fn checked_cusps(cusps: Vec<f64>) -> Result<[f64; 12], CalculationError> {
         return Err(CalculationError::InvalidInput("These house cusps overlap at this time and latitude. Choose Equal or Whole Sign houses."));
     }
     Ok(cusps)
-}
-
-/// Calculate with explicit conventions while retaining the original entry points.
-pub fn calculate_configured_chart(
-    ephemeris: &Ephemeris,
-    input: ChartInput,
-    config: ZodiacConfiguration,
-) -> Result<ConfiguredChartValues, CalculationError> {
-    let configuration = effective_configuration(config)?;
-    let (bodies, cusps, offset, actual, speed_reference) =
-        if configuration.reference == ZodiacReference::FaganBradley {
-            let chart = calculate_sidereal_chart(ephemeris, input)?;
-            let actual = match chart.house_system {
-                "equal" => ActualHouseSystem::Equal,
-                "whole-sign" => ActualHouseSystem::WholeSign,
-                "porphyry" => ActualHouseSystem::Porphyry,
-                _ => ActualHouseSystem::Placidus,
-            };
-            (
-                chart.bodies,
-                chart.cusps,
-                chart.ayanamsa_degrees,
-                actual,
-                SpeedReference::SelectedReference,
-            )
-        } else {
-            let chart = calculate_chart(ephemeris, input)?;
-            let offset = if configuration.reference == ZodiacReference::TrueSky {
-                true_sky_offset(input.epoch)?
-            } else {
-                0.0
-            };
-            let bodies = chart
-                .bodies
-                .into_iter()
-                .map(|body| {
-                    Ok(ChartBody {
-                        longitude: normalize(body.longitude - offset)?,
-                        ..body
-                    })
-                })
-                .collect::<Result<Vec<_>, CalculationError>>()?;
-            let (cusps, actual) = match input.house_system {
-                HouseSystem::WholeSign => {
-                    let ascendant = bodies
-                        .iter()
-                        .find(|body| body.name == Body::AscendantSymbol.wire_name())
-                        .expect("chart appends Ascendant")
-                        .longitude;
-                    (
-                        whole_sign_cusps(ascendant, configuration)?.to_vec(),
-                        ActualHouseSystem::WholeSign,
-                    )
-                }
-                HouseSystem::Equal => (
-                    chart
-                        .cusps
-                        .expect("Equal houses supply cusps")
-                        .into_iter()
-                        .map(|c| normalize(c - offset))
-                        .collect::<Result<Vec<_>, _>>()?,
-                    ActualHouseSystem::Equal,
-                ),
-                HouseSystem::Placidus => {
-                    let time = AstroTime::from_tdb(input.epoch);
-                    let angles =
-                        compute_angles(time, input.location.latitude, input.location.longitude);
-                    let (cusps, fallback) = placidus_cusps_with_fallback(
-                        angles,
-                        time,
-                        input.location.latitude,
-                        input.location.longitude,
-                    );
-                    (
-                        cusps
-                            .into_iter()
-                            .map(|c| normalize(c - offset))
-                            .collect::<Result<Vec<_>, _>>()?,
-                        if fallback {
-                            ActualHouseSystem::Porphyry
-                        } else {
-                            ActualHouseSystem::Placidus
-                        },
-                    )
-                }
-            };
-            (bodies, cusps, offset, actual, SpeedReference::Tropical)
-        };
-    if bodies.iter().any(|body| {
-        !body.longitude.is_finite() || !body.speed.is_finite() || !body.declination.is_finite()
-    }) {
-        return Err(CalculationError::InvalidInput(
-            "Chart contains non-finite body values",
-        ));
-    }
-    let table = sectors(configuration);
-    Ok(ConfiguredChartValues {
-        configuration,
-        convention_revision: CONVENTION_REVISION,
-        reference_offset_degrees: offset,
-        speed_reference,
-        bodies: bodies
-            .into_iter()
-            .map(|values| ConfiguredBody {
-                sign: position(values.longitude, &table),
-                values,
-            })
-            .collect(),
-        zodiac_sectors: table,
-        house_sectors: (input.house_system == HouseSystem::WholeSign)
-            .then(|| house_sectors(configuration)),
-        cusps: checked_cusps(cusps)?,
-        requested_house_system: input.house_system,
-        house_system: actual,
-    })
 }

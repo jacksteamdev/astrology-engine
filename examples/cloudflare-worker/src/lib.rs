@@ -3,7 +3,8 @@
 
 use astrology_engine::{
     calculate_chart, find_sun_crossing, Body, CalculationError, ChartBody, ChartInput, Direction,
-    Ephemeris, Epoch, HouseSystem, Location, SunSearchInput,
+    Ephemeris, Epoch, HouseSystem, Location, SignDivisions, SunSearchInput, ZodiacConfiguration,
+    ZodiacReference,
 };
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
@@ -188,14 +189,20 @@ async fn build_chart(
                 epoch: base,
                 location,
                 house_system: parse_house_system(request.house_system.as_deref()),
+                zodiac: ZodiacConfiguration {
+                    reference: ZodiacReference::Tropical,
+                    divisions: SignDivisions::Equal,
+                    ophiuchus: None,
+                },
             },
         )
     })?;
     Ok(Chart {
         utc_date: request.date.clone(),
         location,
-        bodies: chart.bodies,
-        cusps: chart.cusps,
+        bodies: chart.bodies.into_iter().map(|entry| entry.values).collect(),
+        cusps: (parse_house_system(request.house_system.as_deref()) != HouseSystem::WholeSign)
+            .then(|| chart.cusps.to_vec()),
     })
 }
 

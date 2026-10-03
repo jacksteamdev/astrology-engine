@@ -28,16 +28,25 @@ bun run verify /path/to/cheb.bin ../../target/conventions-wasm-report.json
 ```
 
 The first command executes dataset-free boundary/projection checks and
-structural compatibility checks. The full-chart native check is explicitly
+unified chart structural checks. The full-chart native check is explicitly
 ignored until the dataset is supplied. The Wasm runner executes the public
 example adapter and its JSON configuration contract. In each full-chart run,
 440 valid charts are compared and 16 overlapping polar house sets are rejected
 under the engine's existing safeguards. Recorded speeds remain unchanged in the
-True Sky projection; the existing Fagan–Bradley model is checked for API
-compatibility separately.
+True Sky projection; the existing Fagan–Bradley model is checked through the unified API
+separately.
 
 The tropical/search regression harness remains a separate check:
 
 ```sh
 python3 tools/verification/parity.py --dataset /path/to/cheb.bin --report target/conventions-frozen-parity.json
 ```
+
+The frozen tropical/search runner preserves the original captures and hashes.
+Its migration policy independently identifies 247 overlapping house sets from
+the frozen cusps and requires the explicit overlap error for exactly those rows.
+The 1 overlapping HTTP adapter cases likewise require HTTP 500 with `internal`.
+All other rows, including Whole Sign HTTP cusp omission and precise Sun-search
+results, still compare exactly. Run `python3 tools/verification/test_chart_migration.py`
+for negative controls covering unexpected errors, missing/extra rows, and changed
+migration counts.

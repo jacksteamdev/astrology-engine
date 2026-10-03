@@ -13,18 +13,17 @@ mod types;
 pub mod chart;
 pub mod conventions;
 pub use conventions::{
-    assign_sign, calculate_configured_chart, effective_configuration, true_sky_offset,
-    whole_sign_cusps, zodiac_sectors, ActualHouseSystem, ConfiguredBody, ConfiguredChartValues,
-    Ophiuchus, Sign, SignDivisions, SignPosition, SignSector, SpeedReference, ZodiacConfiguration,
-    ZodiacReference, CONVENTION_REVISION,
+    assign_sign, effective_configuration, true_sky_offset, whole_sign_cusps, zodiac_sectors,
+    ActualHouseSystem, Ophiuchus, Sign, SignDivisions, SignPosition, SignSector, SpeedReference,
+    ZodiacConfiguration, ZodiacReference, CONVENTION_REVISION,
 };
 pub mod search;
 pub mod sidereal;
-pub use sidereal::{calculate_sidereal_chart, fagan_bradley_ayanamsa, SiderealChartValues};
+pub use sidereal::fagan_bradley_ayanamsa;
 
 pub use astro::find_moment::Direction;
 pub use astro::houses::HouseSystem;
-pub use chart::{calculate_chart, ChartInput, ChartValues};
+pub use chart::{calculate_chart, ChartEntry, ChartInput, ChartValues};
 pub use cheb::chart::earth_from_sun;
 pub use cheb::{BlobError, ChebPlace, Ephemeris, EvalError, Quantity, SeriesBody};
 pub use coverage_window::CoverageWindow;
