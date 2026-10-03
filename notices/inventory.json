@@ -2,31 +2,32 @@
   "generator": "cargo-about 0.9.2",
   "inputs": {
     "Cargo.lock": "493978f3355313c5b462abf2e1d5ce44f35a16099c37d7866c2c5271b59c4f81",
-    "Cargo.toml": "f6eb299c5f5d113ac1cd49fe51fa4cc028fdc96f2068e9f326f13a426e6ab786",
-    "LICENSE": "cc2189d2828bb8090f61e0f7aa18080a40fe42efe1dac6972460c2fb6d964aa9",
-    "THIRD_PARTY_NOTICES.md": "92953bb16fe35b95fa9a80f6f55c298265b4ec2600c0dd1170af623ca2b0fb7e",
+    "Cargo.toml": "34d120288f6e38c748b09e195f2bc74b6307b938b4a59e5874fba6b54f7d995d",
+    "LICENSE": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04",
+    "NOTICE": "8ece9078e054810889cb0a89a0acf8b1f5b533ef9e9d92f9a118ef4bbdc74739",
+    "THIRD_PARTY_NOTICES.md": "442c92c818a23bf75e7a16481a24e9f29d78d09a7731e01cbce4721ccd1368d0",
     "examples/cloudflare-worker/Cargo.lock": "9be76353c6a605becf7200bf6463c96eff76989840753185c020738b4b250194",
-    "examples/cloudflare-worker/Cargo.toml": "09c2045535deb8afc1b0dd2623d52a46c20cc55f0267c49d1f932a71c2df0242",
-    "examples/cloudflare-worker/build.ts": "bababc964056bdcfd775369e60e252739a4ae347480bcb8c02d114440ae9aa00",
+    "examples/cloudflare-worker/Cargo.toml": "df9e572de743d2e8be0ce593e62d5fb3dd54594fab58b01cae01f4d051d28168",
+    "examples/cloudflare-worker/build.ts": "005c296c1ea0578c66e6eb3486e7e8748002c4747b01a8f6a9c2d0a1209373f4",
     "examples/cloudflare-worker/bun.lock": "c8fd7386f88d4162451103ddb437a510144c72fd9baba7255c373b27c2dafa69",
-    "examples/cloudflare-worker/package.json": "afd09627cbc9bab4151f65b6c2885163bdda42d91c64a99efafff3ba08bfc200",
+    "examples/cloudflare-worker/package.json": "ed9fe757eb6e0cf65351b797063a2405866dc4ca993892be7b73c9be5c254320",
     "examples/cloudflare-worker/wrangler.jsonc": "9c9dd96ce6e77cb5a385141b3e37084779f0ce6354c2ff6e69b5dddf003bae9f",
-    "examples/configurable-chart/build-wasm.ts": "eecc2dc402c3a687a3afa1f9f5738324d6d56f95bfe4167158eefba66a8770e0",
+    "examples/configurable-chart/build-wasm.ts": "8f5c678ced9571e6a13aa24de2fba97756c6d123498da7a5166eb3daf2ea8721",
     "examples/configurable-chart/bun.lock": "ecbff363cd50d08e60a0b6a9080b4d616ee816a89743c7c8e4e05bc571cde514",
-    "examples/configurable-chart/package.json": "f120a6f09dfd71a1febc922afad803fb6635c26c9b9cc4cc7c288a49bc7d17c6",
-    "examples/configurable-chart/vite.config.ts": "0d311a3ee16c51fe21a0c9e606e5c8bec467ed1891dd87fe5bb957ac3ffb6eca",
+    "examples/configurable-chart/package.json": "0ee9981cd2e4d4530a7b58518fbecffd52284ef89d2b176a35330af51bb05d46",
+    "examples/configurable-chart/vite.config.ts": "42bfe8e4636cbbb4c91cd3895ec92531f304b042a05d746638bef5a530384b37",
     "examples/configurable-chart/wasm/Cargo.lock": "ed5c93ef2796121c4a906e7bbe77d0189d5a1c38a75356a9c649827c0310c9c5",
-    "examples/configurable-chart/wasm/Cargo.toml": "11b036519a587b4d6d162a93e9b2db91e7a4de5d55dc7de6230bf119cdffd8f5",
+    "examples/configurable-chart/wasm/Cargo.toml": "6ab9b88fe1063dc7bef0e05466f8b8aa01dde644629c1b6bf15392f2c073342c",
     "notices/RUST_LIBRARY_NOTICES.html": "78c163fcec50e64bfd85fedb850c273595602fafa2b41f30f75d4e410b80ee83",
     "rust-toolchain.toml": "41308dbe82a83679b7b2081be4d5ae7f9aa52f642bcc3eab104ac77501560e79",
-    "tools/dataset-builder/Cargo.toml": "16cf7a1c0f2902fad5d12f5d4cc8a4d7a77a02a59b894251ea6017faae4be65a",
+    "tools/dataset-builder/Cargo.toml": "fb3ee41b5db46b13f4b1bf6931eb4d30581658a5b6b61ab8164529b8798cd471",
     "tools/jpl/requirements.lock": "c0ac24455f646794d26e301c76837ce671225e570cced8571deacad1f9f241b2",
-    "tools/notices/README.md": "e7af2ae2d5a4ff5a75e8c19bd47c572817b146801949430b574f1f2e81740c00",
-    "tools/notices/about.toml": "b53b2f6d8eac1e07fb95b8d564c748ab8e43a4e48eddad91a987a83d1f0842e1",
-    "tools/notices/collect.ts": "21c7e477d486d4809fd82f3ce9d57585a2269c9a413f3f10eb489eedafc0db1b",
-    "tools/notices/core.ts": "ffa4af5d7712a3569fc4cf9e057f8a909508252fa6676587702c41e7ec221ff6",
-    "tools/notices/notices.test.ts": "43b0c50fddfb62d4282567c5cd6868f9a0c61f25cff3feeee61dae090acbc625",
-    "tools/notices/notices.ts": "3cb532d7b852464e6edaba1b7f0edab2f910122365d8c6f74491bcf4b61afea6",
+    "tools/notices/README.md": "56c6d04dfc6f378dbc7e032bd33654e072f5693ea4fddcb37c87053601d4709d",
+    "tools/notices/about.toml": "424c60a618fa5f2eb0ab9a3288e82fffaaf8a37cc6f90227e9a70250742da0f8",
+    "tools/notices/collect.ts": "4725fdaab09a4e11272f14e47560c53553ea6150aa7294b7cf4f43d3c3790215",
+    "tools/notices/core.ts": "46b7c282ca4ba03183d1752f2c85b44d3a90873229d94e1e25a999b89572b31d",
+    "tools/notices/notices.test.ts": "bc56e16b71704904bb446d29e6449b9445430fa042816f900e509780bafe1dea",
+    "tools/notices/notices.ts": "d5781c76453ef680b378b965247be1885d880204e7f5967f674deff46a503cb4",
     "tools/notices/reviewed-files.json": "42f7dfa5c05bed9ed6f878c9f4daefe1a98d38b311178128baf462d637d9a631",
     "tools/notices/supplements.json": "197fddf2f43ff00a17ca0117e9a579e86169a8516cbd11afe63794e6523cd5e4",
     "tools/notices/supplements/anise-AUTHORS.txt": "3041b5b9f60bbdf14ad44fc473112a155c544068ff7bb003d9ccd440b5f20624",
@@ -245,7 +246,7 @@
           "source": "https://static.crates.io/crates/web-time/web-time-1.1.0.crate"
         }
       ],
-      "sha256": "516099795b9e6f9e58b50a880d8f7aa61892af4ae2a3f4b6a4dab82cd9d5ed28"
+      "sha256": "da9601faa2e5d39218b0698f502ffc255ef46953c3bb76edc3ac1d53de352ee5"
     },
     "builder": {
       "packages": [
@@ -772,7 +773,7 @@
           "source": "https://static.crates.io/crates/zmij/zmij-1.0.21.crate"
         }
       ],
-      "sha256": "324d9c53f727ee67e9769852f77f2ff70c210c4687cf78a3e13b4d92666a6311"
+      "sha256": "0486c7e4310651507e0b57a410f5a5aabd5cce364f1e5b72b7683febbd6f0492"
     },
     "worker": {
       "packages": [
@@ -1353,7 +1354,7 @@
           "source": "https://static.crates.io/crates/zmij/zmij-1.0.21.crate"
         }
       ],
-      "sha256": "55113b10f8adc150b2e804708f7d1886cf908c1d60e568ad54410d08b91fa625"
+      "sha256": "2843e8d1c28ce60a0c9142cfce61439b519590bab4f8b2f5082c126f735587d5"
     },
     "browser": {
       "packages": [
@@ -1586,7 +1587,7 @@
           "source": "https://static.crates.io/crates/zmij/zmij-1.0.21.crate"
         }
       ],
-      "sha256": "7331396828eaf7ca61a61db195e59b046d0bdb9e1d484e508a24a5b972bb147f"
+      "sha256": "048e77c61ae40478833276b61bfbaab8b197b03156b504bbd7647bcda16df203"
     }
   }
 }

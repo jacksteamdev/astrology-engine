@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 //! Explicit chart conventions preserved by regression fixtures.
 use crate::astro::houses::{compute_angles, placidus_cusps_with_fallback};
 use crate::astro::AstroTime;

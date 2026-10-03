@@ -28,8 +28,8 @@ jobs:
       - run: bun tools/notices/notices.ts verify
       - run: bun test tools/notices/notices.test.ts
       - run: bun tools/notices/notices.ts package-builder
-      - run: test -s target/distribution/dataset-builder/THIRD_PARTY_NOTICES.html && test -s target/distribution/dataset-builder/RUST_LIBRARY_NOTICES.html
-      - run: cargo package --locked --allow-dirty --list | python3 -c 'import sys; files=set(sys.stdin.read().splitlines()); assert {"LICENSE", "THIRD_PARTY_NOTICES.md", "notices/runtime.txt", "notices/RUST_LIBRARY_NOTICES.html"} <= files'
+      - run: test -s target/distribution/dataset-builder/ASTROLOGY_ENGINE_SOURCE.tar.gz && test -s target/distribution/dataset-builder/THIRD_PARTY_NOTICES.html && test -s target/distribution/dataset-builder/RUST_LIBRARY_NOTICES.html
+      - run: cargo package --locked --allow-dirty --list | python3 -c 'import sys; files=set(sys.stdin.read().splitlines()); assert {"LICENSE", "NOTICE", "THIRD_PARTY_NOTICES.md", "notices/runtime.txt", "notices/RUST_LIBRARY_NOTICES.html"} <= files'
   configurable-chart:
     runs-on: ubuntu-24.04
     steps:
@@ -43,10 +43,10 @@ jobs:
       - run: cargo clippy --locked --manifest-path examples/configurable-chart/wasm/Cargo.toml --target wasm32-unknown-unknown -- -D warnings
       - run: bun install --frozen-lockfile
         working-directory: examples/configurable-chart
-      - run: bun run build:wasm && bun run check && bun run build
+      - run: bun run build && bun run check
         working-directory: examples/configurable-chart
       - run: bun examples/configurable-chart/node_modules/typescript/bin/tsc --project tools/notices/tsconfig.json
-      - run: test -s examples/configurable-chart/build/THIRD_PARTY_NOTICES.html && test -s examples/configurable-chart/engine/THIRD_PARTY_NOTICES.txt && test -s examples/configurable-chart/build/RUST_LIBRARY_NOTICES.html
+      - run: test -s examples/configurable-chart/build/ASTROLOGY_ENGINE_SOURCE.tar.gz && test -s examples/configurable-chart/build/THIRD_PARTY_NOTICES.html && test -s examples/configurable-chart/engine/THIRD_PARTY_NOTICES.txt && test -s examples/configurable-chart/build/RUST_LIBRARY_NOTICES.html
   wasm-and-host:
     runs-on: ubuntu-24.04
     steps:
@@ -71,7 +71,7 @@ jobs:
         working-directory: examples/cloudflare-worker
       - run: bun run build:verification
         working-directory: examples/cloudflare-worker
-      - run: test -s examples/cloudflare-worker/build/worker/THIRD_PARTY_NOTICES.txt && test -s examples/cloudflare-worker/build/RUST_LIBRARY_NOTICES.html
+      - run: test -s examples/cloudflare-worker/build/worker/ASTROLOGY_ENGINE_SOURCE.tar.gz && test -s examples/cloudflare-worker/build/worker/THIRD_PARTY_NOTICES.txt && test -s examples/cloudflare-worker/build/RUST_LIBRARY_NOTICES.html
       - run: node examples/cloudflare-worker/verify.mjs
       - run: python tools/verification/test_compare.py
       - run: python -m pip install --require-hashes -r tools/jpl/requirements.lock

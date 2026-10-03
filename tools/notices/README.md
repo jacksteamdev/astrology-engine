@@ -31,7 +31,7 @@ configuration require regeneration and review.
 Review every changed component and its complete packaged license and NOTICE
 files. MIT is preferred when offered as an alternative. Other permissive terms
 are retained, including Unicode and BSD requirements. MPL is explicitly allowed
-for hifitime and ANISE. Unknown expressions and unreviewed synthesized license
+for first-party packages, hifitime and ANISE. Unknown expressions and unreviewed synthesized license
 texts fail rather than being treated as MIT. Build-only Rust dependencies are
 included conservatively; dev-only Rust dependencies are excluded.
 
@@ -66,10 +66,17 @@ bun tools/notices/notices.ts copy runtime /absolute/path/to/distribution
 
 Both Worker build modes copy notices to `build/` and `build/worker/`. Wrangler's
 build command calls the same ordinary-build wrapper. Browser Wasm preparation
-copies notices into `engine/` and `public/`; the static build refreshes `public/`
-and Vite carries it into `build/`. The browser page links to the self-contained
-HTML notice page, including clickable MPL source downloads. Preserve the LICENSE
-and all notice files when redistributing an artifact directory. A Worker runs
+copies notices into `engine/` and `public/`; the static build first rebuilds Wasm and its source snapshot, then Vite carries
+`public/` into `build/`. This prevents a fresh source archive from accompanying
+a stale Wasm binary. The browser page links to the self-contained
+HTML notice page, including clickable MPL source downloads. Built artifacts also include `NOTICE` and `ASTROLOGY_ENGINE_SOURCE.tar.gz`.
+The archive captures the editable first-party Rust and browser source, shared
+verification modules, manifests, lockfiles and build configuration from the
+current checkout. It excludes datasets and build caches. Dependency source uses
+the pinned upstream links above. The notice page links to the local archive;
+serve it alongside browser Wasm and rebuild after changing covered code.
+Archive creation requires `tar`. Preserve the LICENSE
+and all notice files and the source archive when redistributing an artifact directory. A Worker runs
 server-side; its HTTP API does not need a new license endpoint.
 
 The Cargo source package includes the project license, root notices, all four

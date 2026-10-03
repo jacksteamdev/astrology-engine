@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 #[path = "../tools/verification/common/mod.rs"]
 mod common;
 use astrology_engine::{

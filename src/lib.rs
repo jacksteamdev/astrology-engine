@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 #![allow(clippy::inconsistent_digit_grouping)]
 #![allow(clippy::excessive_precision)]
 #![allow(clippy::should_implement_trait)]

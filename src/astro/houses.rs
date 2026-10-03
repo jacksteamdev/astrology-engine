@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use super::frames::{gast_degrees, true_obliquity};
 use super::time::AstroTime;
 const DEG2RAD: f64 = core::f64::consts::PI / 180.0;

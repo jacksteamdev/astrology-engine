@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use super::frames::{eqj_to_ect_state, RAD2DEG};
 use super::time::AstroTime;
 use super::vec::Vec3;

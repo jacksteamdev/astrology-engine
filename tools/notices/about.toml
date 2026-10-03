@@ -16,3 +16,13 @@ license = "Zlib"
 path = "LICENSE-ZLIB.md"
 license = "Zlib"
 checksum = "c43b9a9b1387ed53d2c49263838261129a010e280e3a174a792242c3e2c98db9"
+
+# First-party source and adapters use MPL-2.0.
+[astrology-engine]
+accepted = ["MPL-2.0"]
+[dataset-builder]
+accepted = ["MPL-2.0"]
+[astrology-worker-example]
+accepted = ["MPL-2.0"]
+[configurable-chart-example]
+accepted = ["MPL-2.0"]

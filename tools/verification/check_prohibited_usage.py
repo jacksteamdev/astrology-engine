@@ -1,3 +1,6 @@
+# Copyright (c) Jack Asher
+# SPDX-License-Identifier: MPL-2.0
+
 """Check proposed or committed content against the repository usage policy."""
 
 import argparse

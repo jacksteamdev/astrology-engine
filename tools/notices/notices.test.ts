@@ -1,9 +1,13 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 import { afterEach, test } from 'bun:test';
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 import { mkdtempSync, rmSync, appendFileSync, unlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
-import { check, copy, html, inputs, profileNames, read, supplements, write } from './core.ts';
+import { check, copy, html, sourceArchive, sourceFiles, read, supplements, write } from './core.ts';
 import { validateCollection } from './collect.ts';
 
 const root = resolve(import.meta.dir, '../..');
@@ -11,7 +15,7 @@ const temporary: string[] = [];
 const fixture = (): string => {
   const out = mkdtempSync(join(tmpdir(), 'engine-notices-'));
   temporary.push(out);
-  for (const path of [...Object.keys(inputs(root)), 'notices/inventory.json', ...profileNames.map(p => `notices/${p}.txt`)]) write(out, path, read(root, path));
+  for (const path of sourceFiles(root)) write(out, path, read(root, path));
   return out;
 };
 afterEach(() => { for (const path of temporary.splice(0)) rmSync(path, { recursive: true, force: true }); });
@@ -24,6 +28,17 @@ test('current bundles pass and copy a self-contained notice page', () => {
   const page = read(repo, 'output/THIRD_PARTY_NOTICES.html');
   assert.match(page, /href="https:\/\/static.crates.io\/crates\/hifitime\/hifitime-4.3.0.crate"/);
   assert.match(page, /Copyright \(c\) Jack Asher/);
+  assert.ok(page.includes(`href="${sourceArchive}"`));
+  assert.equal(read(repo, 'output/NOTICE'), read(repo, 'NOTICE'));
+  const archive = join(repo, 'output', sourceArchive);
+  const entries = execFileSync('tar', ['-tzf', archive], { encoding: 'utf8' }).trim().split('\n');
+  assert.deepEqual(entries, sourceFiles(repo));
+  for (const path of ['src/lib.rs', 'src/astro/frames.rs', 'tools/dataset-builder/src/main.rs',
+    'examples/cloudflare-worker/src/lib.rs', 'examples/configurable-chart/wasm/src/lib.rs',
+    'examples/configurable-chart/main.ts', 'tools/verification/structural.rs', 'NOTICE', 'LICENSE']) {
+    assert.equal(execFileSync('tar', ['-xOzf', archive, path], { encoding: 'utf8' }), read(repo, path));
+  }
+  assert.ok(!entries.some(path => /(?:node_modules|target|\.env|data\/generated)/.test(path)));
 });
 test('dependency changes cannot silently reuse old notices', () => {
   const repo = fixture();
@@ -65,4 +80,12 @@ test('upstream supplemental license bytes survive rendering without trimming', (
     const bundle = read(root, `notices/${profile}.txt`);
     for (const file of entry.files) assert.ok(bundle.includes(read(root, file.path)), `${file.path} must be preserved verbatim in ${profile}`);
   }
+});
+
+test('first-party paths require MPL metadata', () => {
+  const p = { name: 'astrology-engine', version: '0.1.0', license: 'MPL-2.0', manifest_path: '/project/Cargo.toml', source: null };
+  const data = { crates: [{ package: p, license: 'MPL-2.0' }], licenses: [] };
+  validateCollection(data, new Set(), new Set([p.manifest_path]));
+  p.license = 'MIT';
+  assert.throws(() => validateCollection(data, new Set(), new Set([p.manifest_path])), /Unreviewed path dependency/);
 });

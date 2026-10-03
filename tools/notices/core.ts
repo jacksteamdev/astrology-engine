@@ -1,4 +1,8 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { readFileSync, readdirSync, mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 
@@ -49,7 +53,7 @@ export const supplements = (root: string): Supplement[] => {
 // dependencies. A dependency or packaging change requires deliberate regeneration.
 export const inputs = (root: string): Record<string, string> => {
   const paths = [
-    'LICENSE', 'THIRD_PARTY_NOTICES.md', 'Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml',
+    'LICENSE', 'NOTICE', 'THIRD_PARTY_NOTICES.md', 'Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml',
     'notices/RUST_LIBRARY_NOTICES.html',
     'tools/dataset-builder/Cargo.toml', 'tools/jpl/requirements.lock',
     'examples/cloudflare-worker/Cargo.toml', 'examples/cloudflare-worker/Cargo.lock',
@@ -86,6 +90,20 @@ export const html = (text: string): string => {
   const linked = escaped.replace(/https:\/\/[^\s<>]+/g, url => `<a href="${url}">${url}</a>`);
   return `<!doctype html>\n<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Third-party notices</title><style>body{font:1rem/1.5 system-ui;max-width:75rem;margin:2rem auto;padding:0 1rem}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style><h1>Third-party notices</h1><pre>${linked}</pre></html>\n`;
 };
+// Capture editable first-party build inputs, including the shared verification
+// module. Explicit source roots exclude datasets, credentials and build caches.
+export const sourceFiles = (root: string): string[] => [...new Set([
+  ...Object.keys(inputs(root)), 'README.md', 'data/manifest.json',
+  ...profileNames.map(p => `notices/${p}.txt`), 'notices/inventory.json',
+  ...['src', 'tools/dataset-builder/src', 'examples/cloudflare-worker/src',
+    'examples/configurable-chart/wasm/src', 'tools/verification/common']
+    .flatMap(directory => filesBelow(root, directory)),
+  'tools/verification/structural.rs',
+  ...readdirSync(join(root, 'examples/configurable-chart'), { withFileTypes: true })
+    .filter(entry => entry.isFile() && /\.(ts|html|json|md|lock)$/.test(entry.name))
+    .map(entry => `examples/configurable-chart/${entry.name}`),
+])].sort();
+export const sourceArchive = 'ASTROLOGY_ENGINE_SOURCE.tar.gz';
 export const copy = (root: string, profile: Profile, destination: string): void => {
   check(root);
   const out = resolve(destination);
@@ -95,7 +113,14 @@ export const copy = (root: string, profile: Profile, destination: string): void 
   }
   const text = read(root, `notices/${profile}.txt`);
   write(out, 'LICENSE', read(root, 'LICENSE'));
+  write(out, 'NOTICE', read(root, 'NOTICE'));
+  execFileSync('tar', ['-czf', join(out, sourceArchive), '-C', root, '--null', '-T', '-'], {
+    input: sourceFiles(root).join('\0') + '\0',
+    env: { ...process.env, COPYFILE_DISABLE: '1' },
+  });
   write(out, 'THIRD_PARTY_NOTICES.txt', text);
-  write(out, 'THIRD_PARTY_NOTICES.html', html(text).replace('</pre>', '</pre><p><a href="RUST_LIBRARY_NOTICES.html">Rust standard library notices</a></p>'));
+  write(out, 'THIRD_PARTY_NOTICES.html', html(text)
+    .replace('<pre>', `<p><a href="${sourceArchive}">Download Astrology Engine source (MPL-2.0)</a></p><pre>`)
+    .replace('</pre>', '</pre><p><a href="RUST_LIBRARY_NOTICES.html">Rust standard library notices</a></p>'));
   write(out, 'RUST_LIBRARY_NOTICES.html', read(root, 'notices/RUST_LIBRARY_NOTICES.html'));
 };

@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use dataset_builder::astro::node::ascending_node_longitude;
 use dataset_builder::astro::{apparent_lon_dec, KmStateProvider};
 use dataset_builder::cheb::format::{write_blob, Quantity, SeriesBody, WriteSeries};

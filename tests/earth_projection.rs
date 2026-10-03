@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use astrology_engine::{earth_from_sun, ChartBody, ChebPlace};
 
 #[test]

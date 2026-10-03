@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use astrology_engine::tooling::clenshaw;
 pub fn to_unit(t: f64, lo: f64, hi: f64) -> f64 {
     2.0 * (t - lo) / (hi - lo) - 1.0

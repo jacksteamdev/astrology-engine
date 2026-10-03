@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use astrology_engine::{calculate_chart, ChartInput, Ephemeris, Epoch, HouseSystem, Location};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {

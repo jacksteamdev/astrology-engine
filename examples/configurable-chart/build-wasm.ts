@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 import { check, copy, wasmBindgenVersion } from '../../tools/notices/core.ts';
 import { resolve } from 'node:path';
 

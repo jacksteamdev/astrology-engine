@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use crate::kernel::store::KernelStore;
 use crate::types::{Body, FrameError, StateProvider, StateVector};
 use hifitime::Epoch;

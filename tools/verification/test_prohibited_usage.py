@@ -1,3 +1,6 @@
+# Copyright (c) Jack Asher
+# SPDX-License-Identifier: MPL-2.0
+
 """Exercise the actual hook in temporary Git repositories."""
 
 import gzip

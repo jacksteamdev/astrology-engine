@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use super::fit::clenshaw;
 use super::format::{self, BlobError, Header, Quantity, SeriesBody, SeriesMeta};
 use crate::astro::find_moment::{normalize360, signed_delta};

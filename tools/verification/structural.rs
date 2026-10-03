@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 mod common;
 use astrology_engine::{
     calculate_chart, coverage, find_sun_crossing, BlobError, Body, CalculationError, ChartInput,

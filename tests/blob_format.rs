@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 #![cfg(feature = "generation")]
 
 use astrology_engine::tooling::format::{

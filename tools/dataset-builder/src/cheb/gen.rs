@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use super::fit::{boundary_jump_arcsec, fit_segment, max_residual_arcsec, FitKind};
 use super::format::{Quantity, SeriesBody, WriteSeries};
 const N_EVAL_PER_SEGMENT: usize = 60;
