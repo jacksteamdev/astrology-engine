@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 
 thread_local! {
     static CAPTURE_INSTANT: RefCell<Option<Epoch>> = const { RefCell::new(None) };

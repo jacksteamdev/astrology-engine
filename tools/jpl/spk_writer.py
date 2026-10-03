@@ -1,3 +1,6 @@
+# Copyright (c) Jack Asher
+# SPDX-License-Identifier: MPL-2.0
+
 from __future__ import annotations
 import struct
 from collections import namedtuple

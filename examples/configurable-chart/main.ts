@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 import init, { calculate } from './engine/chart.js';
 
 const form = document.querySelector<HTMLFormElement>('#chart-form')!;

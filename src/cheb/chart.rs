@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use super::eval::{ChebPlace, Ephemeris, EvalError};
 use super::format::SeriesBody;
 use crate::types::{Body, ChartBody};

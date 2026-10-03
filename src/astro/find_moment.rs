@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 const SEARCH_WINDOW_DAYS: f64 = 730.0;
 const SCAN_STEP_DAYS: f64 = 1.0;
 const BISECT_EPSILON_DAYS: f64 = 1.0 / 86_400.0;

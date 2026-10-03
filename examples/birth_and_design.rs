@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use astrology_engine::{
     calculate_chart, find_sun_crossing, Body, ChartInput, Direction, Ephemeris, Epoch, HouseSystem,
     Location, SunSearchInput,

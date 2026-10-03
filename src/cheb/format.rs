@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use crate::types::Body;
 pub const MAGIC: [u8; 8] = *b"HDCHEB01";
 pub const HEADER_LEN: usize = 64;

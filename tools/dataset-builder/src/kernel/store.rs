@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use crate::coverage_window::CoverageWindow;
 use crate::types::{Body, Frame as FrameTag, StateVector};
 use anise::almanac::Almanac;

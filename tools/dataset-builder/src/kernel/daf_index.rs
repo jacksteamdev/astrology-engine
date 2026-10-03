@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 pub use crate::coverage_window::{intersect_windows, CoverageWindow};
 use anise::naif::daf::DAF;
 use anise::naif::spk::summary::SPKSummaryRecord;

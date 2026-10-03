@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 pub fn clenshaw(coeffs: &[f64], x: f64) -> f64 {
     let mut b1 = 0.0_f64;
     let mut b2 = 0.0_f64;

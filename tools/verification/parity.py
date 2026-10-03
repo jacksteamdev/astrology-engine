@@ -1,3 +1,6 @@
+# Copyright (c) Jack Asher
+# SPDX-License-Identifier: MPL-2.0
+
 import argparse
 import gzip
 import hashlib

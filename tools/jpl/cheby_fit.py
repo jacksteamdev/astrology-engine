@@ -1,3 +1,6 @@
+# Copyright (c) Jack Asher
+# SPDX-License-Identifier: MPL-2.0
+
 from __future__ import annotations
 import numpy as np
 from horizons import J2000_JD_TDB, SEC_PER_DAY

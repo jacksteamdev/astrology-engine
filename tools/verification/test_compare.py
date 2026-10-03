@@ -1,3 +1,6 @@
+# Copyright (c) Jack Asher
+# SPDX-License-Identifier: MPL-2.0
+
 import copy
 import importlib.util
 import json

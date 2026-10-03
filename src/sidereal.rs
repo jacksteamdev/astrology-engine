@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 //! Fagan–Bradley zodiac, using the existing IAU 2006 precession rotation.
 //!
 //! This is the traditional longitude-offset convention on the ecliptic of

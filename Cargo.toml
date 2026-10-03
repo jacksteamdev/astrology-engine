@@ -3,10 +3,10 @@ name = "astrology-engine"
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.96"
-license = "MIT"
+license = "MPL-2.0"
 publish = false
 description = "Immutable Chebyshev ephemeris evaluation and chart calculations"
-include = ["/src/**", "/Cargo.toml", "/Cargo.lock", "/LICENSE", "/THIRD_PARTY_NOTICES.md", "/README.md", "/data/manifest.json"]
+include = ["/src/**", "/Cargo.toml", "/Cargo.lock", "/LICENSE", "/NOTICE", "/THIRD_PARTY_NOTICES.md", "/notices/**", "/README.md", "/data/manifest.json"]
 
 [workspace]
 members = [".", "tools/dataset-builder"]

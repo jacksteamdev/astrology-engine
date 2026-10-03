@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use crate::{CalculationError, Direction, Ephemeris, Epoch, SeriesBody};
 
 #[derive(Clone, Copy, Debug)]

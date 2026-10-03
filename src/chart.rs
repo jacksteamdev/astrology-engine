@@ -1,3 +1,6 @@
+// Copyright (c) Jack Asher
+// SPDX-License-Identifier: MPL-2.0
+
 use crate::astro::houses::{angle_longitudes, compute_angles, house_set};
 use crate::astro::AstroTime;
 use crate::{Body, CalculationError, ChartBody, Ephemeris, Epoch, HouseSystem, Location};
