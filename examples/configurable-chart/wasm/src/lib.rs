@@ -2,8 +2,7 @@
 // SPDX-License-Identifier: MPL-2.0
 
 use astrology_engine::{
-    calculate_configured_chart, ChartInput, Ephemeris, Epoch, HouseSystem, Location,
-    ZodiacConfiguration,
+    calculate_chart, ChartInput, Ephemeris, Epoch, HouseSystem, Location, ZodiacConfiguration,
 };
 use serde::Deserialize;
 use wasm_bindgen::prelude::*;
@@ -40,7 +39,7 @@ pub fn calculate(bytes: &[u8], request_json: &str) -> Result<String, String> {
         Instant::Et(_) => return Err("ET seconds must be finite".into()),
     };
     let ephemeris = Ephemeris::parse(bytes.to_vec()).map_err(|error| error.to_string())?;
-    let chart = calculate_configured_chart(
+    let chart = calculate_chart(
         &ephemeris,
         ChartInput {
             epoch,
@@ -49,8 +48,8 @@ pub fn calculate(bytes: &[u8], request_json: &str) -> Result<String, String> {
                 longitude: request.longitude,
             },
             house_system: request.house_system,
+            zodiac: request.configuration,
         },
-        request.configuration,
     )
     .map_err(|error| error.to_string())?;
     serde_json::to_string(&chart).map_err(|error| error.to_string())

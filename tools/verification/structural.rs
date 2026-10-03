@@ -4,7 +4,8 @@
 mod common;
 use astrology_engine::{
     calculate_chart, coverage, find_sun_crossing, BlobError, Body, CalculationError, ChartInput,
-    Direction, Ephemeris, Epoch, EvalError, HouseSystem, Location, SeriesBody, SunSearchInput,
+    Direction, Ephemeris, Epoch, EvalError, HouseSystem, Location, SeriesBody, SignDivisions,
+    SunSearchInput, ZodiacConfiguration, ZodiacReference,
 };
 
 fn manufactured_polynomials_keep_chart_relationships_and_house_options() {
@@ -23,6 +24,11 @@ fn manufactured_polynomials_keep_chart_relationships_and_house_options() {
                     longitude: 0.0,
                 },
                 house_system: system,
+                zodiac: ZodiacConfiguration {
+                    reference: ZodiacReference::Tropical,
+                    divisions: SignDivisions::Equal,
+                    ophiuchus: None,
+                },
             },
         )
         .unwrap();
@@ -30,25 +36,30 @@ fn manufactured_polynomials_keep_chart_relationships_and_house_options() {
             chart
                 .bodies
                 .iter()
-                .map(|b| b.name.as_str())
+                .map(|b| b.values.name.as_str())
                 .collect::<Vec<_>>(),
             Body::ALL.map(Body::wire_name)
         );
         assert_eq!(
-            chart.bodies[1].longitude,
-            (chart.bodies[0].longitude + 180.0).rem_euclid(360.0)
+            chart.bodies[1].values.longitude,
+            (chart.bodies[0].values.longitude + 180.0).rem_euclid(360.0)
         );
-        assert_eq!(chart.bodies[0].speed, chart.bodies[1].speed);
-        assert_eq!(chart.bodies[0].declination, chart.bodies[1].declination);
-        assert_eq!(chart.bodies[3].declination, chart.bodies[4].declination);
-        assert_eq!(chart.bodies[3].speed, chart.bodies[4].speed);
+        assert_eq!(chart.bodies[0].values.speed, chart.bodies[1].values.speed);
+        assert_eq!(
+            chart.bodies[0].values.declination,
+            chart.bodies[1].values.declination
+        );
+        assert_eq!(
+            chart.bodies[3].values.declination,
+            chart.bodies[4].values.declination
+        );
+        assert_eq!(chart.bodies[3].values.speed, chart.bodies[4].values.speed);
         assert!(chart.bodies[15..]
             .iter()
-            .all(|b| b.speed == 0.0 && b.declination == 0.0));
+            .all(|b| b.values.speed == 0.0 && b.values.declination == 0.0));
+        assert_eq!(chart.cusps.len(), 12);
         if system == HouseSystem::WholeSign {
-            assert!(chart.cusps.is_none());
-        } else {
-            assert_eq!(chart.cusps.unwrap().len(), 12);
+            assert!(chart.cusps.iter().all(|c| c % 30.0 == 0.0));
         }
     }
 }
@@ -97,7 +108,12 @@ fn requests_use_the_published_domain_and_keep_the_search_margin_in_both_directio
                     latitude: 0.0,
                     longitude: 0.0
                 },
-                house_system: HouseSystem::Equal
+                house_system: HouseSystem::Equal,
+                zodiac: ZodiacConfiguration {
+                    reference: ZodiacReference::Tropical,
+                    divisions: SignDivisions::Equal,
+                    ophiuchus: None
+                },
             }
         ),
         Err(CalculationError::OutOfCoverage { .. })
@@ -116,7 +132,12 @@ fn admission_rejects_nonfinite_locations_and_invalid_search_targets() {
                         latitude,
                         longitude: 0.0
                     },
-                    house_system: HouseSystem::Equal
+                    house_system: HouseSystem::Equal,
+                    zodiac: ZodiacConfiguration {
+                        reference: ZodiacReference::Tropical,
+                        divisions: SignDivisions::Equal,
+                        ophiuchus: None
+                    },
                 }
             ),
             Err(CalculationError::InvalidInput(_))

@@ -64,7 +64,7 @@ parsed ephemeris across calculations. File access, storage, and checking the
 artifact's SHA-256 belong to the caller; the library accepts the bytes.
 
 For a natal chart, `calculate_chart` takes that ephemeris, an unambiguous birth
-instant, latitude and longitude, and a house system. The caller resolves local
+instant, latitude and longitude, a house system, and explicit zodiac settings. The caller resolves local
 time and timezone ambiguity before passing the instant.
 
 For each stored body coordinate, the runtime selects the segment containing the
@@ -82,12 +82,12 @@ The runtime combines those body values with angles and houses calculated from
 the birth instant, birthplace, and selected house system. Birthplace affects this
 chart geometry; it does not alter the stored geocentric body positions.
 
-The result is `ChartValues`: a list of body and angle entries, plus optional
-house cusps. These are the numerical values an application can use to display a
+The result is `ChartValues`: body and angle entries with sign assignments, twelve
+house cusps, and metadata describing the effective zodiac and actual house method. These are the numerical values an application can use to display a
 chart. The current result contains 15 body/node entries and four chart angles.
 
 The same pipeline supports the Human Design design chart's planetary positions.
-The caller first calculates the birth chart, subtracts 88° from the birth Sun's
+The caller first calculates a tropical birth chart, subtracts 88° from the birth Sun's
 longitude, and asks `find_sun_crossing` to search backward. It then calls
 `calculate_chart` at the returned instant, reusing the same ephemeris. Human
 Design gate calculations remain outside this library. The

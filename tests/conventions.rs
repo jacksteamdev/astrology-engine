@@ -2,10 +2,9 @@
 // SPDX-License-Identifier: MPL-2.0
 
 use astrology_engine::{
-    assign_sign, calculate_chart, calculate_configured_chart, calculate_sidereal_chart,
-    effective_configuration, true_sky_offset, whole_sign_cusps, zodiac_sectors, ActualHouseSystem,
-    ChartInput, Ephemeris, Epoch, HouseSystem, Location, Ophiuchus, SignDivisions, SpeedReference,
-    ZodiacConfiguration, ZodiacReference,
+    assign_sign, calculate_chart, effective_configuration, true_sky_offset, whole_sign_cusps,
+    zodiac_sectors, ActualHouseSystem, ChartInput, Ephemeris, Epoch, HouseSystem, Location,
+    Ophiuchus, SignDivisions, SpeedReference, ZodiacConfiguration, ZodiacReference,
 };
 use serde_json::Value;
 use sha2::{Digest, Sha256};
@@ -111,7 +110,7 @@ fn invalid_inputs_and_explicit_effective_configuration() {
     }
     let ephemeris = Ephemeris::parse(common::polynomial_blob()).unwrap();
     for latitude in [f64::NAN, f64::INFINITY, -91.0, 91.0] {
-        assert!(calculate_configured_chart(
+        assert!(calculate_chart(
             &ephemeris,
             ChartInput {
                 epoch: Epoch::from_et_seconds(0.0),
@@ -119,14 +118,14 @@ fn invalid_inputs_and_explicit_effective_configuration() {
                     latitude,
                     longitude: 0.0
                 },
-                house_system: HouseSystem::Equal
+                house_system: HouseSystem::Equal,
+                zodiac: c,
             },
-            c
         )
         .is_err());
     }
     for et in [-50_000_001.0, 50_000_001.0] {
-        assert!(calculate_configured_chart(
+        assert!(calculate_chart(
             &ephemeris,
             ChartInput {
                 epoch: Epoch::from_et_seconds(et),
@@ -134,62 +133,79 @@ fn invalid_inputs_and_explicit_effective_configuration() {
                     latitude: 0.0,
                     longitude: 0.0
                 },
-                house_system: HouseSystem::Equal
+                house_system: HouseSystem::Equal,
+                zodiac: c,
             },
-            c
         )
         .is_err());
     }
 }
 
 #[test]
-fn additive_api_preserves_existing_entry_points_and_reports_fallback() {
+fn all_references_return_complete_house_and_sign_metadata() {
     let ephemeris = Ephemeris::parse(common::polynomial_blob()).unwrap();
-    for latitude in [0.0, 51.5, 80.0, -80.0] {
+    for reference in [
+        ZodiacReference::Tropical,
+        ZodiacReference::FaganBradley,
+        ZodiacReference::TrueSky,
+    ] {
         for house_system in [
             HouseSystem::Equal,
             HouseSystem::WholeSign,
             HouseSystem::Placidus,
         ] {
-            let input = ChartInput {
-                epoch: "2000-01-01T12:00:00Z".parse().unwrap(),
-                location: Location {
-                    latitude,
-                    longitude: 90.0,
-                },
-                house_system,
-            };
-            let old_tropical = calculate_chart(&ephemeris, input).unwrap();
-            let old_sidereal = calculate_sidereal_chart(&ephemeris, input);
-            let config = ZodiacConfiguration {
-                reference: ZodiacReference::FaganBradley,
+            let zodiac = ZodiacConfiguration {
+                reference,
                 divisions: SignDivisions::Equal,
                 ophiuchus: None,
             };
-            let new = calculate_configured_chart(&ephemeris, input, config);
-            match (old_sidereal, new) {
-                (Ok(old), Ok(new)) => {
-                    assert_eq!(
-                        new.bodies
-                            .iter()
-                            .map(|b| b.values.clone())
-                            .collect::<Vec<_>>(),
-                        old.bodies
-                    );
-                    assert_eq!(new.cusps.to_vec(), old.cusps);
-                    assert_eq!(new.reference_offset_degrees, old.ayanamsa_degrees);
-                    assert_eq!(new.speed_reference, SpeedReference::SelectedReference);
-                    if old.house_system == "porphyry" {
-                        assert_eq!(new.house_system, ActualHouseSystem::Porphyry);
-                    }
+            let chart = calculate_chart(
+                &ephemeris,
+                ChartInput {
+                    epoch: "2000-01-01T12:00:00Z".parse().unwrap(),
+                    location: Location {
+                        latitude: 80.0,
+                        longitude: 90.0,
+                    },
+                    house_system,
+                    zodiac,
+                },
+            )
+            .unwrap();
+            assert_eq!(chart.configuration, zodiac);
+            assert_eq!(chart.cusps.len(), 12);
+            assert_eq!(chart.bodies.len(), 19);
+            assert_eq!(chart.requested_house_system, house_system);
+            assert_eq!(
+                chart.speed_reference,
+                if reference == ZodiacReference::FaganBradley {
+                    SpeedReference::SelectedReference
+                } else {
+                    SpeedReference::Tropical
                 }
-                (Err(old), Err(new)) => assert_eq!(old.to_string(), new.to_string()),
-                other => panic!("Compatibility mismatch: {other:?}"),
+            );
+            assert_eq!(
+                chart.house_system,
+                match house_system {
+                    HouseSystem::Equal => ActualHouseSystem::Equal,
+                    HouseSystem::WholeSign => ActualHouseSystem::WholeSign,
+                    HouseSystem::Placidus => ActualHouseSystem::Porphyry,
+                }
+            );
+            for entry in &chart.bodies {
+                assert_eq!(
+                    entry.sign,
+                    assign_sign(entry.values.longitude, zodiac).unwrap()
+                );
             }
-            assert_eq!(calculate_chart(&ephemeris, input).unwrap(), old_tropical);
-            if house_system == HouseSystem::WholeSign {
-                assert!(old_tropical.cusps.is_none());
-            }
+            assert_eq!(
+                chart.house_sectors.is_some(),
+                house_system == HouseSystem::WholeSign
+            );
+            let json = serde_json::to_value(&chart).unwrap();
+            assert!(json["bodies"][0].get("longitude").is_some());
+            assert!(json["bodies"][0].get("values").is_none());
+            assert!(json["bodies"][0].get("sign").is_some());
         }
     }
 }
@@ -226,8 +242,9 @@ fn source_generated_full_charts() {
                 longitude: input["longitude"].as_f64().unwrap(),
             },
             house_system,
+            zodiac: config,
         };
-        let result = calculate_configured_chart(&ephemeris, input, config);
+        let result = calculate_chart(&ephemeris, input);
         let expected: Vec<f64> = serde_json::from_value(case["cusps"].clone()).unwrap();
         let sweep: f64 = (0..12)
             .map(|i| (expected[(i + 1) % 12] - expected[i]).rem_euclid(360.0))

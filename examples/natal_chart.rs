@@ -1,7 +1,10 @@
 // Copyright (c) Jack Asher
 // SPDX-License-Identifier: MPL-2.0
 
-use astrology_engine::{calculate_chart, ChartInput, Ephemeris, Epoch, HouseSystem, Location};
+use astrology_engine::{
+    calculate_chart, ChartInput, Ephemeris, Epoch, HouseSystem, Location, SignDivisions,
+    ZodiacConfiguration, ZodiacReference,
+};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let dataset = std::env::args_os()
@@ -20,17 +23,20 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 longitude: -0.1278,
             },
             house_system: HouseSystem::Equal,
+            zodiac: ZodiacConfiguration {
+                reference: ZodiacReference::Tropical,
+                divisions: SignDivisions::Equal,
+                ophiuchus: None,
+            },
         },
     )?;
 
     println!("Birth moment: {birth_moment}");
     println!("Longitudes in degrees:");
     for body in &chart.bodies {
-        println!("{:<20} {:>12.6}", body.name, body.longitude);
+        println!("{:<20} {:>12.6}", body.values.name, body.values.longitude);
     }
-    if let Some(cusps) = &chart.cusps {
-        println!("House cusps in degrees: {cusps:?}");
-    }
+    println!("House cusps in degrees: {:?}", chart.cusps);
 
     Ok(())
 }

@@ -125,6 +125,7 @@ jobs:
           cache-dependency-path: tools/jpl/requirements.lock
       - run: python -m pip install --require-hashes -r tools/jpl/requirements.lock
       - run: python tools/verification/test_compare.py
+      - run: python tools/verification/test_chart_migration.py
       - run: python tools/verification/test_acquisition.py
       - run: python tools/verification/test_generation.py
   worker:

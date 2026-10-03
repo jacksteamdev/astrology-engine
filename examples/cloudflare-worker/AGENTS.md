@@ -17,9 +17,9 @@ requests, deployment and cleanup procedures.
   only after loading, hashing and parsing succeed so failed initialization can
   recover. In the [local harness](verify.mjs), cold/warm requests and retry after
   invalid storage exercise this lifecycle across the R2 and Rust boundaries.
-- HTTP representation is distinct from library values: absent Whole Sign
-  cusps are omitted in JSON, and public search results discard sub-minute
-  precision. The [capture adapter](src/verification.rs) retains floating-point
+- HTTP representation is distinct from library values: Whole Sign
+  cusps are omitted in JSON even though the runtime returns twelve cusps. Public
+  search results discard sub-minute precision. The [capture adapter](src/verification.rs) retains floating-point
   bits and precise instants for parity. Keep public formatting separate from
   capture transport, including lossless large-integer handling in `verify.mjs`.
 
