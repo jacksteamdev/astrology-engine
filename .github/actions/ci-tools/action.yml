@@ -1,0 +1,28 @@
+name: Prepare pinned CI tools
+description: Restore or install verified tool binaries independently of application builds
+inputs:
+  group:
+    description: worker, browser, or notices
+    required: true
+runs:
+  using: composite
+  steps:
+    - id: info
+      shell: bash
+      env:
+        TOOL_GROUP: ${{ inputs.group }}
+      run: bun tools/ci/setup.ts info "$TOOL_GROUP"
+    - id: cache
+      uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+      with:
+        path: ${{ steps.info.outputs.path }}
+        key: ${{ steps.info.outputs.key }}
+    - shell: bash
+      env:
+        TOOL_GROUP: ${{ inputs.group }}
+      run: bun tools/ci/setup.ts install "$TOOL_GROUP"
+    - if: steps.cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+      with:
+        path: ${{ steps.info.outputs.path }}
+        key: ${{ steps.info.outputs.key }}

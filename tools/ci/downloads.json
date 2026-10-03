@@ -1,0 +1,23 @@
+{
+  "wasm-bindgen": {
+    "version": "0.2.122",
+    "url": "https://github.com/wasm-bindgen/wasm-bindgen/releases/download/0.2.122/wasm-bindgen-0.2.122-x86_64-unknown-linux-musl.tar.gz",
+    "sha256": "122a3fe2ea9c6e3e89b50e42dd1a346e499f3f65a54aae0b4eaeb658139d1e0e",
+    "binary": "wasm-bindgen",
+    "versionOutput": "wasm-bindgen 0.2.122"
+  },
+  "wasm-opt": {
+    "version": "129",
+    "url": "https://github.com/WebAssembly/binaryen/releases/download/version_129/binaryen-version_129-x86_64-linux.tar.gz",
+    "sha256": "50b9fa62b9abea752da92ec57e0c555fee578760cd237c40107957715d2976ba",
+    "binary": "bin/wasm-opt",
+    "versionOutput": "wasm-opt version 129 (version_129)"
+  },
+  "esbuild": {
+    "version": "0.28.0",
+    "url": "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.28.0.tgz",
+    "sha256": "e94bf1c7f44197b22cf6a787578eca9af805aa9624104488252de2a765c6a4f0",
+    "binary": "bin/esbuild",
+    "versionOutput": "0.28.0"
+  }
+}
