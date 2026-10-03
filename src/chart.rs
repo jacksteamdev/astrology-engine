@@ -63,6 +63,14 @@ pub fn calculate_chart(
             SpeedReference::SelectedReference,
         ),
     };
+    // Keep inherited tropical values, including angles that round to 360°.
+    let project_longitude = |longitude: f64| {
+        if configuration.reference == ZodiacReference::Tropical {
+            longitude
+        } else {
+            (longitude - offset).rem_euclid(360.0)
+        }
+    };
     let lat = input.location.latitude;
     let lon = input.location.longitude;
     if !(-90.0..=90.0).contains(&lat) || !(-180.0..=180.0).contains(&lon) {
@@ -73,6 +81,7 @@ pub fn calculate_chart(
     crate::check_coverage(ephemeris, input.epoch.to_et_seconds(), 0.0)?;
     let mut bodies = crate::cheb::chart::chart_bodies(ephemeris, input.epoch)
         .map_err(CalculationError::Evaluation)?;
+    let physical_body_count = bodies.len();
     let time = AstroTime::from_tdb(input.epoch);
     let angles = compute_angles(time, lat, lon);
     let angle_names = [
@@ -96,12 +105,10 @@ pub fn calculate_chart(
         .into_iter()
         .enumerate()
         .map(|(index, body)| ChartBody {
-            longitude: if configuration.reference == ZodiacReference::Tropical {
-                body.longitude
-            } else {
-                (body.longitude - offset).rem_euclid(360.0)
-            },
-            speed: if configuration.reference == ZodiacReference::FaganBradley && index < 15 {
+            longitude: project_longitude(body.longitude),
+            speed: if configuration.reference == ZodiacReference::FaganBradley
+                && index < physical_body_count
+            {
                 body.speed - rate
             } else {
                 body.speed
@@ -118,7 +125,7 @@ pub fn calculate_chart(
     }
     let (cusps, actual) = match input.house_system {
         HouseSystem::WholeSign => (
-            whole_sign_cusps(bodies[15].longitude, configuration)?.to_vec(),
+            whole_sign_cusps(project_longitude(angles.ascendant), configuration)?.to_vec(),
             ActualHouseSystem::WholeSign,
         ),
         HouseSystem::Equal => (
@@ -126,29 +133,14 @@ pub fn calculate_chart(
                 .cusps
                 .expect("Equal houses supply cusps")
                 .into_iter()
-                .map(|c| {
-                    if configuration.reference == ZodiacReference::Tropical {
-                        c
-                    } else {
-                        (c - offset).rem_euclid(360.0)
-                    }
-                })
+                .map(project_longitude)
                 .collect(),
             ActualHouseSystem::Equal,
         ),
         HouseSystem::Placidus => {
             let (cusps, fallback) = placidus_cusps_with_fallback(angles, time, lat, lon);
             (
-                cusps
-                    .into_iter()
-                    .map(|c| {
-                        if configuration.reference == ZodiacReference::Tropical {
-                            c
-                        } else {
-                            (c - offset).rem_euclid(360.0)
-                        }
-                    })
-                    .collect(),
+                cusps.into_iter().map(project_longitude).collect(),
                 if fallback {
                     ActualHouseSystem::Porphyry
                 } else {
