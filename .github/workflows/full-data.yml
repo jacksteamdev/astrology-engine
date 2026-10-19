@@ -6,6 +6,10 @@ on:
         description: Authorized URL for the SHA-pinned production dataset
         required: false
         type: string
+      fagan_bradley_dataset_url:
+        description: Authorized URL for the historical website dataset (SHA 06d4c26e...)
+        required: false
+        type: string
       regenerate:
         description: Acquire official JPL inputs and regenerate twice
         required: true
@@ -42,6 +46,20 @@ jobs:
           bun install --frozen-lockfile
           bun run build:wasm
           bun run verify "$RUNNER_TEMP/production.bin" "$RUNNER_TEMP/conventions-wasm.json"
+          cargo build --locked --release --manifest-path ../../Cargo.toml -p dataset-builder
+          bun prepare-segments.ts "$RUNNER_TEMP/production.bin" "$RUNNER_TEMP/segments"
+          bun verify-segments.ts "$RUNNER_TEMP/production.bin" "$RUNNER_TEMP/segments"
+      - if: inputs.fagan_bradley_dataset_url != ''
+        env:
+          DATASET_URL: ${{ inputs.fagan_bradley_dataset_url }}
+        run: |
+          curl --fail --location --proto '=https' "$DATASET_URL" --output "$RUNNER_TEMP/fagan-bradley.bin"
+          FAGAN_BRADLEY_DATASET="$RUNNER_TEMP/fagan-bradley.bin" cargo test --locked --test fagan_bradley_legacy -- --include-ignored
+          cargo install wasm-bindgen-cli --version 0.2.122 --locked
+          cd examples/configurable-chart
+          bun install --frozen-lockfile
+          bun run build:wasm
+          bun verify-fagan-bradley.ts "$RUNNER_TEMP/fagan-bradley.bin"
       - if: inputs.regenerate
         run: |
           python -m pip install --require-hashes -r tools/jpl/requirements.lock
