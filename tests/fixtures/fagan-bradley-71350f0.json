@@ -1,0 +1,1143 @@
+{
+  "engineRevision": "71350f0889c3b5e1585935d2017c97efe0bb5848",
+  "websiteRevision": "6edcade",
+  "datasetSha256": "06d4c26e589207bf479dbd217fafb3e4d6c559626425b156912e39a4d859487b",
+  "cases": [
+    {
+      "input": [
+        "2000-01-01T12:00:00Z",
+        51.5,
+        -0.12,
+        "equal"
+      ],
+      "chart": {
+        "bodies": [
+          {
+            "name": "SUN",
+            "longitude": 255.6324900954022,
+            "speed": 1.0193935909841514,
+            "declination": -23.03243258073263
+          },
+          {
+            "name": "EARTH",
+            "longitude": 75.63249009540222,
+            "speed": 1.0193935909841514,
+            "declination": -23.03243258073263
+          },
+          {
+            "name": "MOON",
+            "longitude": 198.58736838029816,
+            "speed": 12.023829257437939,
+            "declination": -10.90065177733138
+          },
+          {
+            "name": "NORTH_NODE",
+            "longitude": 99.21760928277554,
+            "speed": -0.054484991663542814,
+            "declination": 19.2644809627616
+          },
+          {
+            "name": "SOUTH_NODE",
+            "longitude": 279.2176092827755,
+            "speed": -0.054484991663542814,
+            "declination": 19.2644809627616
+          },
+          {
+            "name": "MERCURY",
+            "longitude": 247.15285601661702,
+            "speed": 1.5562218147991018,
+            "declination": -24.418906305364477
+          },
+          {
+            "name": "VENUS",
+            "longitude": 216.82936151702845,
+            "speed": 1.2090000618863144,
+            "declination": -18.448919961250713
+          },
+          {
+            "name": "MARS",
+            "longitude": 303.2268732694325,
+            "speed": 0.7756327582912093,
+            "declination": -13.182490120329785
+          },
+          {
+            "name": "JUPITER",
+            "longitude": 0.5166556444374066,
+            "speed": 0.04072084743327764,
+            "declination": 8.5942586052536
+          },
+          {
+            "name": "SATURN",
+            "longitude": 15.659232329594513,
+            "speed": -0.019984242525737272,
+            "declination": 12.614760263190702
+          },
+          {
+            "name": "URANUS",
+            "longitude": 290.0727578145429,
+            "speed": 0.050305979218052244,
+            "declination": -17.020323740553817
+          },
+          {
+            "name": "NEPTUNE",
+            "longitude": 278.4565812068426,
+            "speed": 0.035532538829471605,
+            "declination": -19.21323528314324
+          },
+          {
+            "name": "PLUTO",
+            "longitude": 226.7183473586659,
+            "speed": 0.03511581846910872,
+            "declination": -11.394288095177117
+          },
+          {
+            "name": "CHIRON",
+            "longitude": 226.88119300300923,
+            "speed": 0.1142659203881351,
+            "declination": -18.14098238004671
+          },
+          {
+            "name": "CERES",
+            "longitude": 159.7166472057482,
+            "speed": 0.21961874441925033,
+            "declination": 9.09010225321794
+          },
+          {
+            "name": "ASCENDANT_SYMBOL",
+            "longitude": 359.28820783150644,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "MIDHEAVEN",
+            "longitude": 254.7639921118028,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "DESCENDANT",
+            "longitude": 179.28820783150644,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "IMUM_COELI",
+            "longitude": 74.7639921118028,
+            "speed": 0.0,
+            "declination": 0.0
+          }
+        ],
+        "cusps": [
+          359.28820783150644,
+          29.288207831506437,
+          59.28820783150644,
+          89.28820783150644,
+          119.28820783150645,
+          149.28820783150644,
+          179.28820783150644,
+          209.28820783150644,
+          239.28820783150644,
+          269.28820783150644,
+          299.28820783150644,
+          329.28820783150644
+        ],
+        "ayanamsa_degrees": 24.736400313401692,
+        "house_system": "equal"
+      }
+    },
+    {
+      "input": [
+        "1990-06-15T03:45:00Z",
+        -33.86,
+        151.21,
+        "whole-sign"
+      ],
+      "chart": {
+        "bodies": [
+          {
+            "name": "SUN",
+            "longitude": 59.190731772468695,
+            "speed": 0.9551099877830325,
+            "declination": 23.296965608653686
+          },
+          {
+            "name": "EARTH",
+            "longitude": 239.19073177246867,
+            "speed": 0.9551099877830325,
+            "declination": 23.296965608653686
+          },
+          {
+            "name": "MOON",
+            "longitude": 316.17524029489766,
+            "speed": 13.243377722356797,
+            "declination": -4.937640580934783
+          },
+          {
+            "name": "NORTH_NODE",
+            "longitude": 283.50595079376575,
+            "speed": 0.017377453378287555,
+            "declination": -18.239438986491088
+          },
+          {
+            "name": "SOUTH_NODE",
+            "longitude": 103.50595079376576,
+            "speed": 0.017377453378287555,
+            "declination": -18.239438986491088
+          },
+          {
+            "name": "MERCURY",
+            "longitude": 40.493059231763496,
+            "speed": 1.7001173851711542,
+            "declination": 19.455915855713393
+          },
+          {
+            "name": "VENUS",
+            "longitude": 23.762908765332263,
+            "speed": 1.1756452323499502,
+            "declination": 15.42293139679627
+          },
+          {
+            "name": "MARS",
+            "longitude": 346.18360698119034,
+            "speed": 0.7193048896062351,
+            "declination": 2.447711276296617
+          },
+          {
+            "name": "JUPITER",
+            "longitude": 81.20454494484498,
+            "speed": 0.21642121816199733,
+            "declination": 22.688746183065433
+          },
+          {
+            "name": "SATURN",
+            "longitude": 269.44152998418485,
+            "speed": -0.058308924742902946,
+            "declination": -21.186538857702708
+          },
+          {
+            "name": "URANUS",
+            "longitude": 253.56806730263867,
+            "speed": -0.03886633657322136,
+            "declination": -23.512679474122066
+          },
+          {
+            "name": "NEPTUNE",
+            "longitude": 259.1151554790776,
+            "speed": -0.02497844707721697,
+            "declination": -21.86277984838781
+          },
+          {
+            "name": "PLUTO",
+            "longitude": 200.797958786219,
+            "speed": -0.020331348500519653,
+            "declination": -1.2520730212065203
+          },
+          {
+            "name": "CHIRON",
+            "longitude": 81.41523969083813,
+            "speed": 0.10106120174822308,
+            "declination": 16.255113440266562
+          },
+          {
+            "name": "CERES",
+            "longitude": 93.1204960025074,
+            "speed": 0.42566949426856127,
+            "declination": 26.757096074438877
+          },
+          {
+            "name": "ASCENDANT_SYMBOL",
+            "longitude": 186.164910843906,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "MIDHEAVEN",
+            "longitude": 84.44696548837148,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "DESCENDANT",
+            "longitude": 6.164910843906014,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "IMUM_COELI",
+            "longitude": 264.44696548837146,
+            "speed": 0.0,
+            "declination": 0.0
+          }
+        ],
+        "cusps": [
+          180.0,
+          210.0,
+          240.0,
+          270.0,
+          300.0,
+          330.0,
+          0.0,
+          30.0,
+          60.0,
+          90.0,
+          120.0,
+          150.0
+        ],
+        "ayanamsa_degrees": 24.610504497388646,
+        "house_system": "whole-sign"
+      }
+    },
+    {
+      "input": [
+        "2000-01-01T12:00:00Z",
+        51.5,
+        -0.12,
+        "placidus"
+      ],
+      "chart": {
+        "bodies": [
+          {
+            "name": "SUN",
+            "longitude": 255.6324900954022,
+            "speed": 1.0193935909841514,
+            "declination": -23.03243258073263
+          },
+          {
+            "name": "EARTH",
+            "longitude": 75.63249009540222,
+            "speed": 1.0193935909841514,
+            "declination": -23.03243258073263
+          },
+          {
+            "name": "MOON",
+            "longitude": 198.58736838029816,
+            "speed": 12.023829257437939,
+            "declination": -10.90065177733138
+          },
+          {
+            "name": "NORTH_NODE",
+            "longitude": 99.21760928277554,
+            "speed": -0.054484991663542814,
+            "declination": 19.2644809627616
+          },
+          {
+            "name": "SOUTH_NODE",
+            "longitude": 279.2176092827755,
+            "speed": -0.054484991663542814,
+            "declination": 19.2644809627616
+          },
+          {
+            "name": "MERCURY",
+            "longitude": 247.15285601661702,
+            "speed": 1.5562218147991018,
+            "declination": -24.418906305364477
+          },
+          {
+            "name": "VENUS",
+            "longitude": 216.82936151702845,
+            "speed": 1.2090000618863144,
+            "declination": -18.448919961250713
+          },
+          {
+            "name": "MARS",
+            "longitude": 303.2268732694325,
+            "speed": 0.7756327582912093,
+            "declination": -13.182490120329785
+          },
+          {
+            "name": "JUPITER",
+            "longitude": 0.5166556444374066,
+            "speed": 0.04072084743327764,
+            "declination": 8.5942586052536
+          },
+          {
+            "name": "SATURN",
+            "longitude": 15.659232329594513,
+            "speed": -0.019984242525737272,
+            "declination": 12.614760263190702
+          },
+          {
+            "name": "URANUS",
+            "longitude": 290.0727578145429,
+            "speed": 0.050305979218052244,
+            "declination": -17.020323740553817
+          },
+          {
+            "name": "NEPTUNE",
+            "longitude": 278.4565812068426,
+            "speed": 0.035532538829471605,
+            "declination": -19.21323528314324
+          },
+          {
+            "name": "PLUTO",
+            "longitude": 226.7183473586659,
+            "speed": 0.03511581846910872,
+            "declination": -11.394288095177117
+          },
+          {
+            "name": "CHIRON",
+            "longitude": 226.88119300300923,
+            "speed": 0.1142659203881351,
+            "declination": -18.14098238004671
+          },
+          {
+            "name": "CERES",
+            "longitude": 159.7166472057482,
+            "speed": 0.21961874441925033,
+            "declination": 9.09010225321794
+          },
+          {
+            "name": "ASCENDANT_SYMBOL",
+            "longitude": 359.28820783150644,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "MIDHEAVEN",
+            "longitude": 254.7639921118028,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "DESCENDANT",
+            "longitude": 179.28820783150644,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "IMUM_COELI",
+            "longitude": 74.7639921118028,
+            "speed": 0.0,
+            "declination": 0.0
+          }
+        ],
+        "cusps": [
+          359.28820783150644,
+          36.2795305754438,
+          57.17934200371593,
+          74.7639921118028,
+          94.18832410884029,
+          122.765557033848,
+          179.28820783150644,
+          216.2795305754438,
+          237.17934200371593,
+          254.7639921118028,
+          274.1883241088403,
+          302.765557033848
+        ],
+        "ayanamsa_degrees": 24.736400313401692,
+        "house_system": "placidus"
+      }
+    },
+    {
+      "input": [
+        "2000-01-01T12:00:00Z",
+        80,
+        90,
+        "placidus"
+      ],
+      "chart": {
+        "bodies": [
+          {
+            "name": "SUN",
+            "longitude": 255.6324900954022,
+            "speed": 1.0193935909841514,
+            "declination": -23.03243258073263
+          },
+          {
+            "name": "EARTH",
+            "longitude": 75.63249009540222,
+            "speed": 1.0193935909841514,
+            "declination": -23.03243258073263
+          },
+          {
+            "name": "MOON",
+            "longitude": 198.58736838029816,
+            "speed": 12.023829257437939,
+            "declination": -10.90065177733138
+          },
+          {
+            "name": "NORTH_NODE",
+            "longitude": 99.21760928277554,
+            "speed": -0.054484991663542814,
+            "declination": 19.2644809627616
+          },
+          {
+            "name": "SOUTH_NODE",
+            "longitude": 279.2176092827755,
+            "speed": -0.054484991663542814,
+            "declination": 19.2644809627616
+          },
+          {
+            "name": "MERCURY",
+            "longitude": 247.15285601661702,
+            "speed": 1.5562218147991018,
+            "declination": -24.418906305364477
+          },
+          {
+            "name": "VENUS",
+            "longitude": 216.82936151702845,
+            "speed": 1.2090000618863144,
+            "declination": -18.448919961250713
+          },
+          {
+            "name": "MARS",
+            "longitude": 303.2268732694325,
+            "speed": 0.7756327582912093,
+            "declination": -13.182490120329785
+          },
+          {
+            "name": "JUPITER",
+            "longitude": 0.5166556444374066,
+            "speed": 0.04072084743327764,
+            "declination": 8.5942586052536
+          },
+          {
+            "name": "SATURN",
+            "longitude": 15.659232329594513,
+            "speed": -0.019984242525737272,
+            "declination": 12.614760263190702
+          },
+          {
+            "name": "URANUS",
+            "longitude": 290.0727578145429,
+            "speed": 0.050305979218052244,
+            "declination": -17.020323740553817
+          },
+          {
+            "name": "NEPTUNE",
+            "longitude": 278.4565812068426,
+            "speed": 0.035532538829471605,
+            "declination": -19.21323528314324
+          },
+          {
+            "name": "PLUTO",
+            "longitude": 226.7183473586659,
+            "speed": 0.03511581846910872,
+            "declination": -11.394288095177117
+          },
+          {
+            "name": "CHIRON",
+            "longitude": 226.88119300300923,
+            "speed": 0.1142659203881351,
+            "declination": -18.14098238004671
+          },
+          {
+            "name": "CERES",
+            "longitude": 159.7166472057482,
+            "speed": 0.21961874441925033,
+            "declination": 9.09010225321794
+          },
+          {
+            "name": "ASCENDANT_SYMBOL",
+            "longitude": 133.16758130514813,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "MIDHEAVEN",
+            "longitude": 346.63746934875593,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "DESCENDANT",
+            "longitude": 313.16758130514813,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "IMUM_COELI",
+            "longitude": 166.63746934875593,
+            "speed": 0.0,
+            "declination": 0.0
+          }
+        ],
+        "cusps": [
+          133.16758130514813,
+          144.3242106530174,
+          155.48084000088667,
+          166.63746934875593,
+          215.48084000088667,
+          264.3242106530174,
+          313.16758130514813,
+          324.3242106530174,
+          335.48084000088664,
+          346.63746934875593,
+          35.48084000088669,
+          84.32421065301743
+        ],
+        "ayanamsa_degrees": 24.736400313401692,
+        "house_system": "porphyry"
+      }
+    },
+    {
+      "input": [
+        "2000-01-01T12:00:00Z",
+        80,
+        20,
+        "equal"
+      ],
+      "chart": {
+        "bodies": [
+          {
+            "name": "SUN",
+            "longitude": 255.6324900954022,
+            "speed": 1.0193935909841514,
+            "declination": -23.03243258073263
+          },
+          {
+            "name": "EARTH",
+            "longitude": 75.63249009540222,
+            "speed": 1.0193935909841514,
+            "declination": -23.03243258073263
+          },
+          {
+            "name": "MOON",
+            "longitude": 198.58736838029816,
+            "speed": 12.023829257437939,
+            "declination": -10.90065177733138
+          },
+          {
+            "name": "NORTH_NODE",
+            "longitude": 99.21760928277554,
+            "speed": -0.054484991663542814,
+            "declination": 19.2644809627616
+          },
+          {
+            "name": "SOUTH_NODE",
+            "longitude": 279.2176092827755,
+            "speed": -0.054484991663542814,
+            "declination": 19.2644809627616
+          },
+          {
+            "name": "MERCURY",
+            "longitude": 247.15285601661702,
+            "speed": 1.5562218147991018,
+            "declination": -24.418906305364477
+          },
+          {
+            "name": "VENUS",
+            "longitude": 216.82936151702845,
+            "speed": 1.2090000618863144,
+            "declination": -18.448919961250713
+          },
+          {
+            "name": "MARS",
+            "longitude": 303.2268732694325,
+            "speed": 0.7756327582912093,
+            "declination": -13.182490120329785
+          },
+          {
+            "name": "JUPITER",
+            "longitude": 0.5166556444374066,
+            "speed": 0.04072084743327764,
+            "declination": 8.5942586052536
+          },
+          {
+            "name": "SATURN",
+            "longitude": 15.659232329594513,
+            "speed": -0.019984242525737272,
+            "declination": 12.614760263190702
+          },
+          {
+            "name": "URANUS",
+            "longitude": 290.0727578145429,
+            "speed": 0.050305979218052244,
+            "declination": -17.020323740553817
+          },
+          {
+            "name": "NEPTUNE",
+            "longitude": 278.4565812068426,
+            "speed": 0.035532538829471605,
+            "declination": -19.21323528314324
+          },
+          {
+            "name": "PLUTO",
+            "longitude": 226.7183473586659,
+            "speed": 0.03511581846910872,
+            "declination": -11.394288095177117
+          },
+          {
+            "name": "CHIRON",
+            "longitude": 226.88119300300923,
+            "speed": 0.1142659203881351,
+            "declination": -18.14098238004671
+          },
+          {
+            "name": "CERES",
+            "longitude": 159.7166472057482,
+            "speed": 0.21961874441925033,
+            "declination": 9.09010225321794
+          },
+          {
+            "name": "ASCENDANT_SYMBOL",
+            "longitude": 136.17635657178334,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "MIDHEAVEN",
+            "longitude": 273.6112914100689,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "DESCENDANT",
+            "longitude": 316.17635657178334,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "IMUM_COELI",
+            "longitude": 93.61129141006889,
+            "speed": 0.0,
+            "declination": 0.0
+          }
+        ],
+        "cusps": [
+          136.17635657178334,
+          166.17635657178334,
+          196.17635657178334,
+          226.17635657178334,
+          256.17635657178334,
+          286.17635657178334,
+          316.17635657178334,
+          346.17635657178334,
+          16.176356571783355,
+          46.17635657178336,
+          76.17635657178336,
+          106.17635657178336
+        ],
+        "ayanamsa_degrees": 24.736400313401692,
+        "house_system": "equal"
+      }
+    },
+    {
+      "input": [
+        "2000-01-01T12:00:00Z",
+        80,
+        20,
+        "whole-sign"
+      ],
+      "chart": {
+        "bodies": [
+          {
+            "name": "SUN",
+            "longitude": 255.6324900954022,
+            "speed": 1.0193935909841514,
+            "declination": -23.03243258073263
+          },
+          {
+            "name": "EARTH",
+            "longitude": 75.63249009540222,
+            "speed": 1.0193935909841514,
+            "declination": -23.03243258073263
+          },
+          {
+            "name": "MOON",
+            "longitude": 198.58736838029816,
+            "speed": 12.023829257437939,
+            "declination": -10.90065177733138
+          },
+          {
+            "name": "NORTH_NODE",
+            "longitude": 99.21760928277554,
+            "speed": -0.054484991663542814,
+            "declination": 19.2644809627616
+          },
+          {
+            "name": "SOUTH_NODE",
+            "longitude": 279.2176092827755,
+            "speed": -0.054484991663542814,
+            "declination": 19.2644809627616
+          },
+          {
+            "name": "MERCURY",
+            "longitude": 247.15285601661702,
+            "speed": 1.5562218147991018,
+            "declination": -24.418906305364477
+          },
+          {
+            "name": "VENUS",
+            "longitude": 216.82936151702845,
+            "speed": 1.2090000618863144,
+            "declination": -18.448919961250713
+          },
+          {
+            "name": "MARS",
+            "longitude": 303.2268732694325,
+            "speed": 0.7756327582912093,
+            "declination": -13.182490120329785
+          },
+          {
+            "name": "JUPITER",
+            "longitude": 0.5166556444374066,
+            "speed": 0.04072084743327764,
+            "declination": 8.5942586052536
+          },
+          {
+            "name": "SATURN",
+            "longitude": 15.659232329594513,
+            "speed": -0.019984242525737272,
+            "declination": 12.614760263190702
+          },
+          {
+            "name": "URANUS",
+            "longitude": 290.0727578145429,
+            "speed": 0.050305979218052244,
+            "declination": -17.020323740553817
+          },
+          {
+            "name": "NEPTUNE",
+            "longitude": 278.4565812068426,
+            "speed": 0.035532538829471605,
+            "declination": -19.21323528314324
+          },
+          {
+            "name": "PLUTO",
+            "longitude": 226.7183473586659,
+            "speed": 0.03511581846910872,
+            "declination": -11.394288095177117
+          },
+          {
+            "name": "CHIRON",
+            "longitude": 226.88119300300923,
+            "speed": 0.1142659203881351,
+            "declination": -18.14098238004671
+          },
+          {
+            "name": "CERES",
+            "longitude": 159.7166472057482,
+            "speed": 0.21961874441925033,
+            "declination": 9.09010225321794
+          },
+          {
+            "name": "ASCENDANT_SYMBOL",
+            "longitude": 136.17635657178334,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "MIDHEAVEN",
+            "longitude": 273.6112914100689,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "DESCENDANT",
+            "longitude": 316.17635657178334,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "IMUM_COELI",
+            "longitude": 93.61129141006889,
+            "speed": 0.0,
+            "declination": 0.0
+          }
+        ],
+        "cusps": [
+          120.0,
+          150.0,
+          180.0,
+          210.0,
+          240.0,
+          270.0,
+          300.0,
+          330.0,
+          0.0,
+          30.0,
+          60.0,
+          90.0
+        ],
+        "ayanamsa_degrees": 24.736400313401692,
+        "house_system": "whole-sign"
+      }
+    },
+    {
+      "input": [
+        "1850-01-01T12:00:00Z",
+        51.5,
+        0,
+        "equal"
+      ],
+      "chart": {
+        "bodies": [
+          {
+            "name": "SUN",
+            "longitude": 258.15436088411934,
+            "speed": 1.018988389059988,
+            "declination": -23.017088258761113
+          },
+          {
+            "name": "EARTH",
+            "longitude": 78.15436088411934,
+            "speed": 1.018988389059988,
+            "declination": -23.017088258761113
+          },
+          {
+            "name": "MOON",
+            "longitude": 119.11643921609598,
+            "speed": 14.587032481172574,
+            "declination": 14.029083139273508
+          },
+          {
+            "name": "NORTH_NODE",
+            "longitude": 121.85519718325739,
+            "speed": -0.005681272474529209,
+            "declination": 13.365349433843784
+          },
+          {
+            "name": "SOUTH_NODE",
+            "longitude": 301.85519718325736,
+            "speed": -0.005681272474529209,
+            "declination": 13.365349433843784
+          },
+          {
+            "name": "MERCURY",
+            "longitude": 265.8891929792167,
+            "speed": 1.6377719606143195,
+            "declination": -24.279954236295584
+          },
+          {
+            "name": "VENUS",
+            "longitude": 243.5716863052989,
+            "speed": 1.2556803113020045,
+            "declination": -23.16490336952721
+          },
+          {
+            "name": "MARS",
+            "longitude": 58.639095253878025,
+            "speed": -0.29446942308828383,
+            "declination": 26.479977865662125
+          },
+          {
+            "name": "JUPITER",
+            "longitude": 150.37302182607314,
+            "speed": 0.02012418897101398,
+            "declination": 3.940790937083452
+          },
+          {
+            "name": "SATURN",
+            "longitude": 339.2472652886995,
+            "speed": 0.04947900034727937,
+            "declination": -1.4385467901601898
+          },
+          {
+            "name": "URANUS",
+            "longitude": 359.6834852827186,
+            "speed": 0.0006827692812443331,
+            "declination": 8.156949980703256
+          },
+          {
+            "name": "NEPTUNE",
+            "longitude": 310.0555754473465,
+            "speed": 0.026013402746176695,
+            "declination": -11.1851224218713
+          },
+          {
+            "name": "PLUTO",
+            "longitude": 4.269139919403674,
+            "speed": -0.0034592513746325437,
+            "declination": -5.51439273768439
+          },
+          {
+            "name": "CHIRON",
+            "longitude": 223.19302126069343,
+            "speed": 0.11218087626543038,
+            "declination": -17.72007591816441
+          },
+          {
+            "name": "CERES",
+            "longitude": 281.4784745125677,
+            "speed": 0.3828996566581431,
+            "declination": -25.447910379239666
+          },
+          {
+            "name": "ASCENDANT_SYMBOL",
+            "longitude": 2.38198164350856,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "MIDHEAVEN",
+            "longitude": 257.2668671261577,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "DESCENDANT",
+            "longitude": 182.38198164350857,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "IMUM_COELI",
+            "longitude": 77.2668671261577,
+            "speed": 0.0,
+            "declination": 0.0
+          }
+        ],
+        "cusps": [
+          2.38198164350856,
+          32.38198164350855,
+          62.38198164350855,
+          92.38198164350855,
+          122.38198164350857,
+          152.38198164350857,
+          182.38198164350857,
+          212.38198164350857,
+          242.38198164350854,
+          272.38198164350854,
+          302.38198164350854,
+          332.38198164350854
+        ],
+        "ayanamsa_degrees": 22.643204156921794,
+        "house_system": "equal"
+      }
+    },
+    {
+      "input": [
+        "2149-12-20T11:58:00Z",
+        51.5,
+        0,
+        "equal"
+      ],
+      "chart": {
+        "bodies": [
+          {
+            "name": "SUN",
+            "longitude": 241.91385917227257,
+            "speed": 1.0176000513789667,
+            "declination": -23.412876225200307
+          },
+          {
+            "name": "EARTH",
+            "longitude": 61.91385917227257,
+            "speed": 1.0176000513789667,
+            "declination": -23.412876225200307
+          },
+          {
+            "name": "MOON",
+            "longitude": 136.17418475346466,
+            "speed": 13.0492948075638,
+            "declination": 10.862768297500592
+          },
+          {
+            "name": "NORTH_NODE",
+            "longitude": 76.92571839377226,
+            "speed": 0.014029773230166853,
+            "declination": 22.7089922767156
+          },
+          {
+            "name": "SOUTH_NODE",
+            "longitude": 256.92571839377223,
+            "speed": 0.014029773230166853,
+            "declination": 22.7089922767156
+          },
+          {
+            "name": "MERCURY",
+            "longitude": 221.24170280369586,
+            "speed": 0.5433879685916772,
+            "declination": -19.00851849723037
+          },
+          {
+            "name": "VENUS",
+            "longitude": 214.64545529379473,
+            "speed": -0.047354340555212815,
+            "declination": -17.55299969093807
+          },
+          {
+            "name": "MARS",
+            "longitude": 231.0148831591618,
+            "speed": 0.7274936148231781,
+            "declination": -23.250003140901125
+          },
+          {
+            "name": "JUPITER",
+            "longitude": 236.5671669200193,
+            "speed": 0.22653365833742,
+            "declination": -22.888054347735
+          },
+          {
+            "name": "SATURN",
+            "longitude": 57.044046073195524,
+            "speed": -0.0822491310535689,
+            "declination": 21.862189367993157
+          },
+          {
+            "name": "URANUS",
+            "longitude": 217.45952076323965,
+            "speed": 0.05773538762912622,
+            "declination": -20.83734233439444
+          },
+          {
+            "name": "NEPTUNE",
+            "longitude": 246.8338185854156,
+            "speed": 0.03767736680618228,
+            "declination": -22.284218188166538
+          },
+          {
+            "name": "PLUTO",
+            "longitude": 54.18432812762084,
+            "speed": -0.019242432048255154,
+            "declination": 13.88038759916828
+          },
+          {
+            "name": "CHIRON",
+            "longitude": 220.14148013852537,
+            "speed": 0.12303347914201268,
+            "declination": -17.949733638407125
+          },
+          {
+            "name": "CERES",
+            "longitude": 319.2086762666908,
+            "speed": 0.24976405318000516,
+            "declination": -14.735456126628508
+          },
+          {
+            "name": "ASCENDANT_SYMBOL",
+            "longitude": 330.27559528587165,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "MIDHEAVEN",
+            "longitude": 242.0586637432146,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "DESCENDANT",
+            "longitude": 150.2755952858716,
+            "speed": 0.0,
+            "declination": 0.0
+          },
+          {
+            "name": "IMUM_COELI",
+            "longitude": 62.0586637432146,
+            "speed": 0.0,
+            "declination": 0.0
+          }
+        ],
+        "cusps": [
+          330.27559528587165,
+          0.2755952858716526,
+          30.275595285871653,
+          60.27559528587165,
+          90.27559528587165,
+          120.27559528587165,
+          150.2755952858716,
+          180.2755952858716,
+          210.2755952858716,
+          240.2755952858716,
+          270.2755952858716,
+          300.2755952858716
+        ],
+        "ayanamsa_degrees": 26.831210373350068,
+        "house_system": "equal"
+      }
+    }
+  ]
+}

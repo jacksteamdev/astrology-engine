@@ -1,0 +1,1097 @@
+{
+  "sourceRevision": "dd2e03d9faf256342c84380ccb6fac83c06771ac",
+  "sourceFiles": {
+    "packages/hd-core/src/chart/longitudeToSign.ts": "8187829a8645fdabeb8734ea85ebd839c7113a8dbec1aaff397199ed8a50d61e",
+    "packages/hd-core/src/chart/wholeSignCusps.ts": "09d21648944f40cd1b7fb047997c1ba8fabb47bad57c6a6870ba3cef7c50b194",
+    "packages/hd-core/src/constants/SIGNS.ts": "b94f575071a870d679acc7bf42b7fb1530459b0a1fc892939f8e219b7fa9283b",
+    "packages/hd-readings/src/internal/ayanamsa.ts": "07877955671ad70d293ff6111597226dff4a3982c3f7b6550a7ca477f77870d7"
+  },
+  "normalization": "remainder = longitude % 360; add 360 only when remainder < 0; canonicalize signed zero before invoking source",
+  "sectors": [
+    {
+      "sign": "Aries",
+      "start": 0
+    },
+    {
+      "sign": "Taurus",
+      "start": 19.7286
+    },
+    {
+      "sign": "Gemini",
+      "start": 56.5875
+    },
+    {
+      "sign": "Cancer",
+      "start": 86.0412
+    },
+    {
+      "sign": "Leo",
+      "start": 103.19
+    },
+    {
+      "sign": "Virgo",
+      "start": 141.6065
+    },
+    {
+      "sign": "Libra",
+      "start": 191.32
+    },
+    {
+      "sign": "Scorpio",
+      "start": 210.1972
+    },
+    {
+      "sign": "Ophiuchus",
+      "start": 223.4245
+    },
+    {
+      "sign": "Sagittarius",
+      "start": 235.7818
+    },
+    {
+      "sign": "Capricorn",
+      "start": 269.2677
+    },
+    {
+      "sign": "Aquarius",
+      "start": 294.8435
+    },
+    {
+      "sign": "Pisces",
+      "start": 318.0103
+    }
+  ],
+  "positions": [
+    {
+      "input": -0.000001,
+      "normalized": 359.999999,
+      "result": {
+        "sign": "Pisces",
+        "degreesInSign": 41.98969900000003
+      }
+    },
+    {
+      "input": 0,
+      "normalized": 0,
+      "result": {
+        "sign": "Aries",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 0.000001,
+      "normalized": 0.000001,
+      "result": {
+        "sign": "Aries",
+        "degreesInSign": 0.000001
+      }
+    },
+    {
+      "input": 19.728599,
+      "normalized": 19.728599,
+      "result": {
+        "sign": "Aries",
+        "degreesInSign": 19.728599
+      }
+    },
+    {
+      "input": 19.7286,
+      "normalized": 19.7286,
+      "result": {
+        "sign": "Taurus",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 19.728601,
+      "normalized": 19.728601,
+      "result": {
+        "sign": "Taurus",
+        "degreesInSign": 0.0000010000000010279564
+      }
+    },
+    {
+      "input": 56.587499,
+      "normalized": 56.587499,
+      "result": {
+        "sign": "Taurus",
+        "degreesInSign": 36.858899
+      }
+    },
+    {
+      "input": 56.5875,
+      "normalized": 56.5875,
+      "result": {
+        "sign": "Gemini",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 56.587500999999996,
+      "normalized": 56.587500999999996,
+      "result": {
+        "sign": "Gemini",
+        "degreesInSign": 9.999999974752427e-7
+      }
+    },
+    {
+      "input": 86.041199,
+      "normalized": 86.041199,
+      "result": {
+        "sign": "Gemini",
+        "degreesInSign": 29.453699000000007
+      }
+    },
+    {
+      "input": 86.0412,
+      "normalized": 86.0412,
+      "result": {
+        "sign": "Cancer",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 86.041201,
+      "normalized": 86.041201,
+      "result": {
+        "sign": "Cancer",
+        "degreesInSign": 9.999999974752427e-7
+      }
+    },
+    {
+      "input": 103.189999,
+      "normalized": 103.189999,
+      "result": {
+        "sign": "Cancer",
+        "degreesInSign": 17.148798999999997
+      }
+    },
+    {
+      "input": 103.19,
+      "normalized": 103.19,
+      "result": {
+        "sign": "Leo",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 103.190001,
+      "normalized": 103.190001,
+      "result": {
+        "sign": "Leo",
+        "degreesInSign": 9.999999974752427e-7
+      }
+    },
+    {
+      "input": 141.606499,
+      "normalized": 141.606499,
+      "result": {
+        "sign": "Leo",
+        "degreesInSign": 38.416499000000016
+      }
+    },
+    {
+      "input": 141.6065,
+      "normalized": 141.6065,
+      "result": {
+        "sign": "Virgo",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 141.606501,
+      "normalized": 141.606501,
+      "result": {
+        "sign": "Virgo",
+        "degreesInSign": 9.999999974752427e-7
+      }
+    },
+    {
+      "input": 191.319999,
+      "normalized": 191.319999,
+      "result": {
+        "sign": "Virgo",
+        "degreesInSign": 49.713498999999985
+      }
+    },
+    {
+      "input": 191.32,
+      "normalized": 191.32,
+      "result": {
+        "sign": "Libra",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 191.320001,
+      "normalized": 191.320001,
+      "result": {
+        "sign": "Libra",
+        "degreesInSign": 9.999999974752427e-7
+      }
+    },
+    {
+      "input": 210.197199,
+      "normalized": 210.197199,
+      "result": {
+        "sign": "Libra",
+        "degreesInSign": 18.87719900000002
+      }
+    },
+    {
+      "input": 210.1972,
+      "normalized": 210.1972,
+      "result": {
+        "sign": "Scorpio",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 210.197201,
+      "normalized": 210.197201,
+      "result": {
+        "sign": "Scorpio",
+        "degreesInSign": 9.999999974752427e-7
+      }
+    },
+    {
+      "input": 223.424499,
+      "normalized": 223.424499,
+      "result": {
+        "sign": "Scorpio",
+        "degreesInSign": 13.227298999999988
+      }
+    },
+    {
+      "input": 223.4245,
+      "normalized": 223.4245,
+      "result": {
+        "sign": "Ophiuchus",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 223.424501,
+      "normalized": 223.424501,
+      "result": {
+        "sign": "Ophiuchus",
+        "degreesInSign": 9.999999974752427e-7
+      }
+    },
+    {
+      "input": 235.781799,
+      "normalized": 235.781799,
+      "result": {
+        "sign": "Ophiuchus",
+        "degreesInSign": 12.357299000000012
+      }
+    },
+    {
+      "input": 235.7818,
+      "normalized": 235.7818,
+      "result": {
+        "sign": "Sagittarius",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 235.781801,
+      "normalized": 235.781801,
+      "result": {
+        "sign": "Sagittarius",
+        "degreesInSign": 9.999999974752427e-7
+      }
+    },
+    {
+      "input": 269.267699,
+      "normalized": 269.267699,
+      "result": {
+        "sign": "Sagittarius",
+        "degreesInSign": 33.48589899999999
+      }
+    },
+    {
+      "input": 269.2677,
+      "normalized": 269.2677,
+      "result": {
+        "sign": "Capricorn",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 269.267701,
+      "normalized": 269.267701,
+      "result": {
+        "sign": "Capricorn",
+        "degreesInSign": 9.999999974752427e-7
+      }
+    },
+    {
+      "input": 294.843499,
+      "normalized": 294.843499,
+      "result": {
+        "sign": "Capricorn",
+        "degreesInSign": 25.575799000000018
+      }
+    },
+    {
+      "input": 294.8435,
+      "normalized": 294.8435,
+      "result": {
+        "sign": "Aquarius",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 294.843501,
+      "normalized": 294.843501,
+      "result": {
+        "sign": "Aquarius",
+        "degreesInSign": 9.999999974752427e-7
+      }
+    },
+    {
+      "input": 318.010299,
+      "normalized": 318.010299,
+      "result": {
+        "sign": "Aquarius",
+        "degreesInSign": 23.16679899999997
+      }
+    },
+    {
+      "input": 318.0103,
+      "normalized": 318.0103,
+      "result": {
+        "sign": "Pisces",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 318.01030099999997,
+      "normalized": 318.01030099999997,
+      "result": {
+        "sign": "Pisces",
+        "degreesInSign": 9.999999974752427e-7
+      }
+    },
+    {
+      "input": -720,
+      "normalized": 0,
+      "result": {
+        "sign": "Aries",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": -360,
+      "normalized": 0,
+      "result": {
+        "sign": "Aries",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": -0.000001,
+      "normalized": 359.999999,
+      "result": {
+        "sign": "Pisces",
+        "degreesInSign": 41.98969900000003
+      }
+    },
+    {
+      "input": 360,
+      "normalized": 0,
+      "result": {
+        "sign": "Aries",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 360.000001,
+      "normalized": 9.999999974752427e-7,
+      "result": {
+        "sign": "Aries",
+        "degreesInSign": 9.999999974752427e-7
+      }
+    },
+    {
+      "input": 720,
+      "normalized": 0,
+      "result": {
+        "sign": "Aries",
+        "degreesInSign": 0
+      }
+    },
+    {
+      "input": 1080.5,
+      "normalized": 0.5,
+      "result": {
+        "sign": "Aries",
+        "degreesInSign": 0.5
+      }
+    }
+  ],
+  "houses": [
+    {
+      "ascendant": 210.1972,
+      "cusps": [
+        {
+          "index": 1,
+          "longitude": 210.1972,
+          "sign": "Scorpio",
+          "degreesInSign": 0
+        },
+        {
+          "index": 2,
+          "longitude": 235.7818,
+          "sign": "Sagittarius",
+          "degreesInSign": 0
+        },
+        {
+          "index": 3,
+          "longitude": 269.2677,
+          "sign": "Capricorn",
+          "degreesInSign": 0
+        },
+        {
+          "index": 4,
+          "longitude": 294.8435,
+          "sign": "Aquarius",
+          "degreesInSign": 0
+        },
+        {
+          "index": 5,
+          "longitude": 318.0103,
+          "sign": "Pisces",
+          "degreesInSign": 0
+        },
+        {
+          "index": 6,
+          "longitude": 0,
+          "sign": "Aries",
+          "degreesInSign": 0
+        },
+        {
+          "index": 7,
+          "longitude": 19.7286,
+          "sign": "Taurus",
+          "degreesInSign": 0
+        },
+        {
+          "index": 8,
+          "longitude": 56.5875,
+          "sign": "Gemini",
+          "degreesInSign": 0
+        },
+        {
+          "index": 9,
+          "longitude": 86.0412,
+          "sign": "Cancer",
+          "degreesInSign": 0
+        },
+        {
+          "index": 10,
+          "longitude": 103.19,
+          "sign": "Leo",
+          "degreesInSign": 0
+        },
+        {
+          "index": 11,
+          "longitude": 141.6065,
+          "sign": "Virgo",
+          "degreesInSign": 0
+        },
+        {
+          "index": 12,
+          "longitude": 191.32,
+          "sign": "Libra",
+          "degreesInSign": 0
+        }
+      ]
+    },
+    {
+      "ascendant": 220,
+      "cusps": [
+        {
+          "index": 1,
+          "longitude": 210.1972,
+          "sign": "Scorpio",
+          "degreesInSign": 0
+        },
+        {
+          "index": 2,
+          "longitude": 235.7818,
+          "sign": "Sagittarius",
+          "degreesInSign": 0
+        },
+        {
+          "index": 3,
+          "longitude": 269.2677,
+          "sign": "Capricorn",
+          "degreesInSign": 0
+        },
+        {
+          "index": 4,
+          "longitude": 294.8435,
+          "sign": "Aquarius",
+          "degreesInSign": 0
+        },
+        {
+          "index": 5,
+          "longitude": 318.0103,
+          "sign": "Pisces",
+          "degreesInSign": 0
+        },
+        {
+          "index": 6,
+          "longitude": 0,
+          "sign": "Aries",
+          "degreesInSign": 0
+        },
+        {
+          "index": 7,
+          "longitude": 19.7286,
+          "sign": "Taurus",
+          "degreesInSign": 0
+        },
+        {
+          "index": 8,
+          "longitude": 56.5875,
+          "sign": "Gemini",
+          "degreesInSign": 0
+        },
+        {
+          "index": 9,
+          "longitude": 86.0412,
+          "sign": "Cancer",
+          "degreesInSign": 0
+        },
+        {
+          "index": 10,
+          "longitude": 103.19,
+          "sign": "Leo",
+          "degreesInSign": 0
+        },
+        {
+          "index": 11,
+          "longitude": 141.6065,
+          "sign": "Virgo",
+          "degreesInSign": 0
+        },
+        {
+          "index": 12,
+          "longitude": 191.32,
+          "sign": "Libra",
+          "degreesInSign": 0
+        }
+      ]
+    },
+    {
+      "ascendant": 223.4245,
+      "cusps": [
+        {
+          "index": 1,
+          "longitude": 210.1972,
+          "sign": "Scorpio",
+          "degreesInSign": 0
+        },
+        {
+          "index": 2,
+          "longitude": 235.7818,
+          "sign": "Sagittarius",
+          "degreesInSign": 0
+        },
+        {
+          "index": 3,
+          "longitude": 269.2677,
+          "sign": "Capricorn",
+          "degreesInSign": 0
+        },
+        {
+          "index": 4,
+          "longitude": 294.8435,
+          "sign": "Aquarius",
+          "degreesInSign": 0
+        },
+        {
+          "index": 5,
+          "longitude": 318.0103,
+          "sign": "Pisces",
+          "degreesInSign": 0
+        },
+        {
+          "index": 6,
+          "longitude": 0,
+          "sign": "Aries",
+          "degreesInSign": 0
+        },
+        {
+          "index": 7,
+          "longitude": 19.7286,
+          "sign": "Taurus",
+          "degreesInSign": 0
+        },
+        {
+          "index": 8,
+          "longitude": 56.5875,
+          "sign": "Gemini",
+          "degreesInSign": 0
+        },
+        {
+          "index": 9,
+          "longitude": 86.0412,
+          "sign": "Cancer",
+          "degreesInSign": 0
+        },
+        {
+          "index": 10,
+          "longitude": 103.19,
+          "sign": "Leo",
+          "degreesInSign": 0
+        },
+        {
+          "index": 11,
+          "longitude": 141.6065,
+          "sign": "Virgo",
+          "degreesInSign": 0
+        },
+        {
+          "index": 12,
+          "longitude": 191.32,
+          "sign": "Libra",
+          "degreesInSign": 0
+        }
+      ]
+    },
+    {
+      "ascendant": 230,
+      "cusps": [
+        {
+          "index": 1,
+          "longitude": 210.1972,
+          "sign": "Scorpio",
+          "degreesInSign": 0
+        },
+        {
+          "index": 2,
+          "longitude": 235.7818,
+          "sign": "Sagittarius",
+          "degreesInSign": 0
+        },
+        {
+          "index": 3,
+          "longitude": 269.2677,
+          "sign": "Capricorn",
+          "degreesInSign": 0
+        },
+        {
+          "index": 4,
+          "longitude": 294.8435,
+          "sign": "Aquarius",
+          "degreesInSign": 0
+        },
+        {
+          "index": 5,
+          "longitude": 318.0103,
+          "sign": "Pisces",
+          "degreesInSign": 0
+        },
+        {
+          "index": 6,
+          "longitude": 0,
+          "sign": "Aries",
+          "degreesInSign": 0
+        },
+        {
+          "index": 7,
+          "longitude": 19.7286,
+          "sign": "Taurus",
+          "degreesInSign": 0
+        },
+        {
+          "index": 8,
+          "longitude": 56.5875,
+          "sign": "Gemini",
+          "degreesInSign": 0
+        },
+        {
+          "index": 9,
+          "longitude": 86.0412,
+          "sign": "Cancer",
+          "degreesInSign": 0
+        },
+        {
+          "index": 10,
+          "longitude": 103.19,
+          "sign": "Leo",
+          "degreesInSign": 0
+        },
+        {
+          "index": 11,
+          "longitude": 141.6065,
+          "sign": "Virgo",
+          "degreesInSign": 0
+        },
+        {
+          "index": 12,
+          "longitude": 191.32,
+          "sign": "Libra",
+          "degreesInSign": 0
+        }
+      ]
+    },
+    {
+      "ascendant": 235.781799,
+      "cusps": [
+        {
+          "index": 1,
+          "longitude": 210.1972,
+          "sign": "Scorpio",
+          "degreesInSign": 0
+        },
+        {
+          "index": 2,
+          "longitude": 235.7818,
+          "sign": "Sagittarius",
+          "degreesInSign": 0
+        },
+        {
+          "index": 3,
+          "longitude": 269.2677,
+          "sign": "Capricorn",
+          "degreesInSign": 0
+        },
+        {
+          "index": 4,
+          "longitude": 294.8435,
+          "sign": "Aquarius",
+          "degreesInSign": 0
+        },
+        {
+          "index": 5,
+          "longitude": 318.0103,
+          "sign": "Pisces",
+          "degreesInSign": 0
+        },
+        {
+          "index": 6,
+          "longitude": 0,
+          "sign": "Aries",
+          "degreesInSign": 0
+        },
+        {
+          "index": 7,
+          "longitude": 19.7286,
+          "sign": "Taurus",
+          "degreesInSign": 0
+        },
+        {
+          "index": 8,
+          "longitude": 56.5875,
+          "sign": "Gemini",
+          "degreesInSign": 0
+        },
+        {
+          "index": 9,
+          "longitude": 86.0412,
+          "sign": "Cancer",
+          "degreesInSign": 0
+        },
+        {
+          "index": 10,
+          "longitude": 103.19,
+          "sign": "Leo",
+          "degreesInSign": 0
+        },
+        {
+          "index": 11,
+          "longitude": 141.6065,
+          "sign": "Virgo",
+          "degreesInSign": 0
+        },
+        {
+          "index": 12,
+          "longitude": 191.32,
+          "sign": "Libra",
+          "degreesInSign": 0
+        }
+      ]
+    },
+    {
+      "ascendant": 235.7818,
+      "cusps": [
+        {
+          "index": 1,
+          "longitude": 235.7818,
+          "sign": "Sagittarius",
+          "degreesInSign": 0
+        },
+        {
+          "index": 2,
+          "longitude": 269.2677,
+          "sign": "Capricorn",
+          "degreesInSign": 0
+        },
+        {
+          "index": 3,
+          "longitude": 294.8435,
+          "sign": "Aquarius",
+          "degreesInSign": 0
+        },
+        {
+          "index": 4,
+          "longitude": 318.0103,
+          "sign": "Pisces",
+          "degreesInSign": 0
+        },
+        {
+          "index": 5,
+          "longitude": 0,
+          "sign": "Aries",
+          "degreesInSign": 0
+        },
+        {
+          "index": 6,
+          "longitude": 19.7286,
+          "sign": "Taurus",
+          "degreesInSign": 0
+        },
+        {
+          "index": 7,
+          "longitude": 56.5875,
+          "sign": "Gemini",
+          "degreesInSign": 0
+        },
+        {
+          "index": 8,
+          "longitude": 86.0412,
+          "sign": "Cancer",
+          "degreesInSign": 0
+        },
+        {
+          "index": 9,
+          "longitude": 103.19,
+          "sign": "Leo",
+          "degreesInSign": 0
+        },
+        {
+          "index": 10,
+          "longitude": 141.6065,
+          "sign": "Virgo",
+          "degreesInSign": 0
+        },
+        {
+          "index": 11,
+          "longitude": 191.32,
+          "sign": "Libra",
+          "degreesInSign": 0
+        },
+        {
+          "index": 12,
+          "longitude": 210.1972,
+          "sign": "Scorpio",
+          "degreesInSign": 0
+        }
+      ]
+    },
+    {
+      "ascendant": 359.999999,
+      "cusps": [
+        {
+          "index": 1,
+          "longitude": 318.0103,
+          "sign": "Pisces",
+          "degreesInSign": 0
+        },
+        {
+          "index": 2,
+          "longitude": 0,
+          "sign": "Aries",
+          "degreesInSign": 0
+        },
+        {
+          "index": 3,
+          "longitude": 19.7286,
+          "sign": "Taurus",
+          "degreesInSign": 0
+        },
+        {
+          "index": 4,
+          "longitude": 56.5875,
+          "sign": "Gemini",
+          "degreesInSign": 0
+        },
+        {
+          "index": 5,
+          "longitude": 86.0412,
+          "sign": "Cancer",
+          "degreesInSign": 0
+        },
+        {
+          "index": 6,
+          "longitude": 103.19,
+          "sign": "Leo",
+          "degreesInSign": 0
+        },
+        {
+          "index": 7,
+          "longitude": 141.6065,
+          "sign": "Virgo",
+          "degreesInSign": 0
+        },
+        {
+          "index": 8,
+          "longitude": 191.32,
+          "sign": "Libra",
+          "degreesInSign": 0
+        },
+        {
+          "index": 9,
+          "longitude": 210.1972,
+          "sign": "Scorpio",
+          "degreesInSign": 0
+        },
+        {
+          "index": 10,
+          "longitude": 235.7818,
+          "sign": "Sagittarius",
+          "degreesInSign": 0
+        },
+        {
+          "index": 11,
+          "longitude": 269.2677,
+          "sign": "Capricorn",
+          "degreesInSign": 0
+        },
+        {
+          "index": 12,
+          "longitude": 294.8435,
+          "sign": "Aquarius",
+          "degreesInSign": 0
+        }
+      ]
+    }
+  ],
+  "projections": [
+    {
+      "utc": "1850-01-01T12:00:00Z",
+      "longitude": -720,
+      "projected": 330.87984710328806
+    },
+    {
+      "utc": "1850-01-01T12:00:00Z",
+      "longitude": 0,
+      "projected": 330.879847103288
+    },
+    {
+      "utc": "1850-01-01T12:00:00Z",
+      "longitude": 31,
+      "projected": 1.8798471032880002
+    },
+    {
+      "utc": "1850-01-01T12:00:00Z",
+      "longitude": 180,
+      "projected": 150.879847103288
+    },
+    {
+      "utc": "1850-01-01T12:00:00Z",
+      "longitude": 359.999999,
+      "projected": 330.879846103288
+    },
+    {
+      "utc": "1850-01-01T12:00:00Z",
+      "longitude": 720,
+      "projected": 330.87984710328806
+    },
+    {
+      "utc": "2000-01-01T12:00:00Z",
+      "longitude": -720,
+      "projected": 328.78441912999995
+    },
+    {
+      "utc": "2000-01-01T12:00:00Z",
+      "longitude": 0,
+      "projected": 328.78441913
+    },
+    {
+      "utc": "2000-01-01T12:00:00Z",
+      "longitude": 31,
+      "projected": 359.78441913
+    },
+    {
+      "utc": "2000-01-01T12:00:00Z",
+      "longitude": 180,
+      "projected": 148.78441913
+    },
+    {
+      "utc": "2000-01-01T12:00:00Z",
+      "longitude": 359.999999,
+      "projected": 328.78441813
+    },
+    {
+      "utc": "2000-01-01T12:00:00Z",
+      "longitude": 720,
+      "projected": 328.78441912999995
+    },
+    {
+      "utc": "2026-10-17T12:34:56Z",
+      "longitude": -720,
+      "projected": 328.4101280888558
+    },
+    {
+      "utc": "2026-10-17T12:34:56Z",
+      "longitude": 0,
+      "projected": 328.4101280888558
+    },
+    {
+      "utc": "2026-10-17T12:34:56Z",
+      "longitude": 31,
+      "projected": 359.4101280888558
+    },
+    {
+      "utc": "2026-10-17T12:34:56Z",
+      "longitude": 180,
+      "projected": 148.41012808885577
+    },
+    {
+      "utc": "2026-10-17T12:34:56Z",
+      "longitude": 359.999999,
+      "projected": 328.4101270888558
+    },
+    {
+      "utc": "2026-10-17T12:34:56Z",
+      "longitude": 720,
+      "projected": 328.4101280888558
+    },
+    {
+      "utc": "2149-12-20T11:58:00Z",
+      "longitude": -720,
+      "projected": 326.68941193242154
+    },
+    {
+      "utc": "2149-12-20T11:58:00Z",
+      "longitude": 0,
+      "projected": 326.68941193242154
+    },
+    {
+      "utc": "2149-12-20T11:58:00Z",
+      "longitude": 31,
+      "projected": 357.68941193242154
+    },
+    {
+      "utc": "2149-12-20T11:58:00Z",
+      "longitude": 180,
+      "projected": 146.68941193242154
+    },
+    {
+      "utc": "2149-12-20T11:58:00Z",
+      "longitude": 359.999999,
+      "projected": 326.68941093242154
+    },
+    {
+      "utc": "2149-12-20T11:58:00Z",
+      "longitude": 720,
+      "projected": 326.68941193242154
+    }
+  ]
+}
